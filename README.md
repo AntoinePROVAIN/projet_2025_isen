@@ -36,3 +36,15 @@ startup pose des annonces et les etudiants propose leurs services
 startup (demarre de rien) != scale up (monte é l'échelle : ex de blablacar)
 startup/ produit a commercialiser/ profil de l'étudian/ tarif
 faire des persona pour different profil d'étudiant 
+cela devra ressembler à cela : https://www.xplore.vc/ecosysteme/maps
+
+---------------------------------------------------------------------------------------
+
+Choix des technos
+
+Frontend:           React
+Backend:            Nest.js
+Database:           
+Auth:               4
+File upload:        5
+Hosting:            6
