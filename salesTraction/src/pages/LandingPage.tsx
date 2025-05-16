@@ -4,7 +4,7 @@ function LandingPage() {
 
   return (
     <>
-      
+      <h1>page d'accueil</h1>
     </>
   )
 }

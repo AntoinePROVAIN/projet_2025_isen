@@ -4,7 +4,7 @@ function ConnexionEtudiant() {
 
   return (
     <>
-      
+        <h1>Connexion Etudiant</h1>
     </>
   )
 }
