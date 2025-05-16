@@ -44,7 +44,7 @@ Choix des technos
 
 Frontend:           React
 Backend:            Nest.js
-Database:           
+Database:           PostgreSQL
 Auth:               4
 File upload:        5
 Hosting:            6
