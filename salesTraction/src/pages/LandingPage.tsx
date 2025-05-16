@@ -1,5 +1,5 @@
 
-import Button from '../components/bouton'
+import Button from '../components/Bouton'
 
 function LandingPage() {
 

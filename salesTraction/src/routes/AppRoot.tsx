@@ -14,10 +14,10 @@ function AppRoot() {
       <Router>
         <Routes>
             <Route path="/" element={<> < LandingPage/> </>} />
-            <Route path="/inscriptionEtudiant" element={<> <InscriptionEtudiant /> </>} />
-            <Route path="/inscriptionEntreprise" element={<> <InscriptionEntreprise /> </>} />
-            <Route path="/connexionEtudiant" element={<> <ConnexionEtudiant /> </>} />
-            <Route path="/connexionEntreprise" element={<> <ConnexionEntreprise /> </>} />
+            <Route path="/inscription/etudiant" element={<> <InscriptionEtudiant /> </>} />
+            <Route path="/inscription/entreprise" element={<> <InscriptionEntreprise /> </>} />
+            <Route path="/connexion/etudiant" element={<> <ConnexionEtudiant /> </>} />
+            <Route path="/connexion/entreprise" element={<> <ConnexionEntreprise /> </>} />
             <Route path="*" element={<> <ErrorPage /> </>} />
         </Routes>
       </Router>
