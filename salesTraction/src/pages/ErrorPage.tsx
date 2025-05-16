@@ -1,5 +1,5 @@
 
-import '../assets/error.css'
+import '../assets/css/error.css'
 
 function ErrorPage() {
 
