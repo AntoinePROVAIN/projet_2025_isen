@@ -1,5 +1,5 @@
 /**
- * Composant Button personnalisable pour l'interface utilisateur.
+ * Composant Button.
  * 
  * @component
  * 
@@ -35,7 +35,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({
     onClick,
     children,
-    variant = 'primary',
+    variant = 'outline',
     disabled = false,
     className = '',
 }) => {

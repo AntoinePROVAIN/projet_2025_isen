@@ -1,13 +1,16 @@
 
 import Button from '../components/Bouton'
+import Header from '../components/Header'
 
 function LandingPage() {
 
   return (
     <>
-      <h1>Rencontre ton commercial</h1>
+      <Header />
+      <h2>Rencontre ton commercial</h2>
       <img src="" alt="" />
-      <Button onClick={()=>console.log('coucou')} children='bouton' />
+      <Button onClick={()=>console.log('Etudiant')} children='Je suis un étudiant' />
+      <Button onClick={()=>console.log('Startup')} children='Je suis une startup' />
     </>
   )
 }
