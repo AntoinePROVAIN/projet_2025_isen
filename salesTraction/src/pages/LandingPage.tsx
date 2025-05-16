@@ -1,10 +1,13 @@
-import './App.css'
+
+import Button from '../components/bouton'
 
 function LandingPage() {
 
   return (
     <>
-      <h1>page d'accueil</h1>
+      <h1>Rencontre ton commercial</h1>
+      <img src="" alt="" />
+      <Button onClick={()=>console.log('coucou')} children='bouton' />
     </>
   )
 }
