@@ -25,6 +25,7 @@ import { OfferModule } from './features/offer/offer.module';
 import { DocumentModule } from './features/document_offer/document.module';
 import { MatchModule } from './features/match/match.module';
 import { LikeModule } from './features/like/like.module';
+import { AdminModule } from './features/admin/admin.module';
 
 @Module({
   imports: [StudentPortalModule, EnterprisePortalModule,TypeOrmModule.forRoot({
@@ -60,6 +61,7 @@ import { LikeModule } from './features/like/like.module';
   DocumentModule,
   MatchModule,
   LikeModule,
+  AdminModule,
 ],
   controllers: [AppController],
   providers: [AppService],
