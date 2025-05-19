@@ -19,8 +19,8 @@ function LandingPage() {
 
         <span className='my-10'></span>
         <div className="space-y-10 py-10 px-16 flex flex-col justify-center">
-            <Button onClick={()=>nav("/connection?personne=student")} children='Je suis un étudiant' />
-            <Button onClick={()=>nav("/connection?personne=student")} children='Je suis une startup' />
+            <Button onClick={()=>nav("/connection/student")} children='Je suis un étudiant' />
+            <Button onClick={()=>nav("/connection/entreprise")} children='Je suis une startup' />
         </div>
       </div>
       </>
