@@ -16,7 +16,7 @@ function InscriptionEntreprise() {
     // const [error, setError] = useState("");
 
     const handleClick = () => {
-        nav("/connexion/entreprise");
+        nav("/connection/{entreprise}");
     }
 
     const handleRetour= () => {

@@ -23,7 +23,7 @@ function InscriptionEtudiant() {
   // const [error, setError] = useState("");
 
   const handleClick = () => {
-      nav("/connexion/entreprise");
+      nav("/connexion/{entreprise}");
   }
 
   const handleRetour= () => {
