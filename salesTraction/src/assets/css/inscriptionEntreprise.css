@@ -1,0 +1,108 @@
+.authComponent_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    height: 100vh;
+}
+
+.authComponent_container {
+    height: auto; /* Supprimer la hauteur fixe */
+    width: 100%;  /* Utiliser 100% pour la largeur */
+    max-width: 600px; /* Utiliser une largeur maximale pour le container */
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.authComponent_content {
+    font-size: 1.5em;
+    width: 100%; /* Permet d'utiliser toute la largeur du container */
+    margin: 0 auto;
+}
+
+.auth_title {
+    text-align: center;
+    font-family: "Madimi One", sans-serif;
+}
+
+.auth_input {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.auth_buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.auth_button {
+    width: 100%;  /* Remplacer par 100% pour la version mobile */
+    background-color: #1E1E1E;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input::placeholder {
+    color: black;
+    opacity: 1;
+}
+
+.or {
+    align-items: center;
+    display: flex;
+    margin: 24px auto;
+    width: 100%;
+    grid-gap: 8px;
+    gap: 8px;
+}
+
+.or::before {
+    border-bottom: 2px solid white;
+    content: "";
+    flex-grow: 1;
+}
+
+.or::after {
+    border-bottom: 2px solid white;
+    content: "";
+    flex-grow: 1;
+}
+
+/* auth google */
+
+.auth_google_container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: var(--couleur_auth_google);
+    color: white;
+    margin: 20px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    gap: 50px;
+}
+
+.auth_google_img {
+    height: 50px;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.auth_google {
+    font-size: 1em;
+}
+
+/* fin auth google */
+
+.labels {
+    font-weight: 100;
+    font-size: 0.75em;
+}
