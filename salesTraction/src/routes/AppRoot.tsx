@@ -6,8 +6,6 @@ import ConnexionEtudiant from '../pages/ConnexionEtudiant';
 import InscriptionEntreprise from '../pages/InscriptionEntreprise';
 import InscriptionEtudiant from '../pages/InscriptionEtudiant';
 import ErrorPage from '../pages/ErrorPage';
-import MarketPlaceEntreprise from '../pages/MarketPlaceEntreprise';
-import MarketPlaceEtudiant from '../pages/MarketPlaceEtudiant';
 
 function AppRoot() {
 
