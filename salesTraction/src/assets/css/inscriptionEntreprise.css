@@ -6,6 +6,7 @@
 }
 
 .authComponent_container {
+    border: 1px solid rgb(0, 0, 0, 0.5);
     height: auto; /* Supprimer la hauteur fixe */
     width: 100%;  /* Utiliser 100% pour la largeur */
     max-width: 600px; /* Utiliser une largeur maximale pour le container */
@@ -33,6 +34,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-size: 0.75em;
 }
 
 .auth_buttons {
