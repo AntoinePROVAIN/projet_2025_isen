@@ -11,11 +11,13 @@ function Connexion() {
   const [mdp, setMdp] = useState("");
   const { personne } = useParams<{ personne: string }>();
 
+  console.log(personne);
+
   const handleClick = () => {
     if (personne == "student") {
       nav("/student/dashboard"); // a modifier pour mettre celle de l'entreprise
     } else if (personne == "entreprise") {// a modifier peut etre
-      nav("entreprise/dashboard");
+      nav("/entreprise/dashboard");
     } else {
       nav("/")
       console.log("probleme")
@@ -23,7 +25,14 @@ function Connexion() {
   }
   
   const compteExist = () => {
-      nav("/inscription/entreprise"); // a modifier pour mettre celle de l'entreprise
+    if (personne == "student") {
+      nav("/inscription/etudiant"); // a modifier pour mettre celle de l'entreprise
+    } else if (personne == "entreprise") {// a modifier peut etre
+      nav("/inscription/entreprise");
+    } else {
+      nav("/")
+      console.log("probleme")
+    }
   }
 
   const handleRetour= () => {
