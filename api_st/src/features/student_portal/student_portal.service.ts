@@ -29,42 +29,6 @@ export class StudentRegistrationService {
     private jwtService: JwtService,
   ) {}
 
-//   async registerStudent(createDto: CreateStudentDto): Promise<Student> {
-//     // 1. Check if user with this email already exists
-//     const existingUser = await this.userRepository.findOne({
-//       where: { email: createDto.email }
-//     });
-
-//     if (existingUser) {
-//       throw new Error('User with this email already exists');
-//     }
-
-//     // 2. Create new user record
-//     const user = new User();
-//     user.email = createDto.email;
-//     // Hash the password before storing
-//     user.password = await bcrypt.hash(createDto.password, 10);
-//     user.is_admin = false; // Students are not admins by default
-
-//     // 3. Save the user to get the generated ID
-//     const savedUser = await this.userRepository.save(user);
-
-//     // 4. Create student profile linked to the user
-//     const student = new Student();
-//     student.first_name = createDto.first_name;
-//     student.last_name = createDto.last_name;
-//     student.university = createDto.university;
-//     student.linkedin_url = createDto.linkedin_url;
-//     student.starting_date = createDto.starting_date;
-//     student.ending_date = createDto.ending_date;
-//     student.profil_picture = createDto.profil_picture || '';
-//     student.birth_date = createDto.birth_date;
-//     student.user = savedUser;
-
-//     // 5. Save and return the student
-//     return this.studentRepository.save(student);
-//   }
-
 async registerStudent(createDto: CreateStudentDto): Promise<Student> {
     // 1. Check if user with this email already exists
     const existingUser = await this.userRepository.findOne({

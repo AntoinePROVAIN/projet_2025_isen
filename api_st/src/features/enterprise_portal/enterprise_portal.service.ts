@@ -1,4 +1,4 @@
-import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
+import { Injectable, BadRequestException, UnauthorizedException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../../entities/user.entity';
@@ -118,6 +118,68 @@ export class EnterprisePortalService {
         throw error;
       }
       throw new UnauthorizedException('Authentification échouée');
+    }
+  }
+
+  async getAllEnterprises(): Promise<{ startups: any[], total: number }> {
+    try {
+      const startups = await this.startupRepository.find({
+        relations: ['user']
+      });
+
+      // Filtrer les informations sensibles
+      const filteredStartups = startups.map(startup => {
+        const { user, ...startupInfo } = startup;
+        const { password, ...userInfo } = user;
+        
+        return {
+          ...startupInfo,
+          user: userInfo
+        };
+      });
+
+      return {
+        startups: filteredStartups,
+        total: startups.length
+      };
+    } catch (error) {
+      throw new BadRequestException('Erreur lors de la récupération des entreprises');
+    }
+  }
+
+  // Nouvelle méthode pour mettre à jour le statut de validation
+  async updateValidationStatus(startupId: number, isValidated: boolean): Promise<{ message: string, startup: any }> {
+    try {
+      // Vérifier si la startup existe
+      const startup = await this.startupRepository.findOne({
+        where: { id: startupId },
+        relations: ['user']
+      });
+
+      if (!startup) {
+        throw new NotFoundException('Startup non trouvée');
+      }
+
+      // Mettre à jour le statut de validation
+      startup.is_validated = isValidated;
+      await this.startupRepository.save(startup);
+
+      // Récupérer la startup mise à jour sans informations sensibles
+      const { user, ...startupInfo } = startup;
+      const { password, ...userInfo } = user;
+
+      return {
+        message: `Statut de validation ${isValidated ? 'activé' : 'désactivé'} avec succès`,
+        startup: {
+          ...startupInfo,
+          user: userInfo
+        }
+      };
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      throw new BadRequestException('Erreur lors de la mise à jour du statut de validation');
     }
   }
 }
