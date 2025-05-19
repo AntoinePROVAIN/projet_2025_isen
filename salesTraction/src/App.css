@@ -1,6 +1,9 @@
-#root {
+/* #root {
   
   margin: 0 auto;
   padding: 2rem;
 
+} */
+:root {
+  --primary-color: #F7F6CF;
 }

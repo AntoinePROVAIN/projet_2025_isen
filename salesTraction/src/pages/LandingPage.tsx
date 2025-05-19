@@ -7,11 +7,14 @@ function LandingPage() {
   return (
     <>
       <Header />
-      <h2>Rencontre ton commercial</h2>
-      <img src="" alt="" />
-      <Button onClick={()=>console.log('Etudiant')} children='Je suis un étudiant' />
-      <Button onClick={()=>console.log('Startup')} children='Je suis une startup' />
-    </>
+      <div className='container'>
+        <h1>Rencontre ton commercial</h1>
+        <img src="" alt="" />
+        <Button onClick={()=>console.log('Etudiant')} children='Je suis un étudiant' />
+        <Button onClick={()=>console.log('Startup')} children='Je suis une startup' />
+    
+      </div>
+      </>
   )
 }
 
