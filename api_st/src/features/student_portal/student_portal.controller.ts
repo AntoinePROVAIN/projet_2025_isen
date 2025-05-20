@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { StudentRegistrationService } from './student_portal.service';
 import { CreateStudentDto } from '../../dto/create-student.dto';
 import { Student } from '../../entities/student.entity';
@@ -7,11 +7,17 @@ import { JwtAuthGuard } from '../../guards/jwt-auth.guard';
 @Controller('student-portal')
 export class StudentPortalController {
   constructor(private readonly studentPortalService: StudentRegistrationService) {}
-  @Get()
-  getHello():string{
-    return 'running';
-  }
   
+  @Get()
+    findAll() {
+      return this.studentPortalService.findAll();
+    }
+  
+    @Get(':studentId')
+    getStudent(@Param('studentId') studentId: string) {
+      return this.studentPortalService.getStudent(+studentId);
+    }
+
   @Post('register')
   create(@Body() createStudentDto: CreateStudentDto): Promise<Student> {
     return this.studentPortalService.registerStudent(createStudentDto);

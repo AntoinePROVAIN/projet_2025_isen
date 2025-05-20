@@ -30,14 +30,10 @@ export class EnterprisePortalController {
     return this.enterprisePortalService.login(loginDto.email, loginDto.password);
   }
 
-  // Route protégée d'exemple
-  @UseGuards(JwtAuthGuard)
-  @Get('profile')
-  getProfile() {
-    return {
-      message: 'Profil startup accessible',
-    };
-  }
+  @Get(':enterpriseId')
+    getEnterprise(@Param('enterpriseId') enterpriseId: string) {
+      return this.enterprisePortalService.getEnterprise(+enterpriseId);
+    }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Get('list')
@@ -45,7 +41,6 @@ export class EnterprisePortalController {
     return this.enterprisePortalService.getAllEnterprises();
   }
 
-  // Nouvelle route pour mettre à jour le statut de validation (admin uniquement)
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Patch(':id/validation')
   async updateValidationStatus(

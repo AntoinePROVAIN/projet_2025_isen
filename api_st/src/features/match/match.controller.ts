@@ -25,10 +25,15 @@ export class MatchController {
     return this.matchService.findByStartup(+startupId);
   }
 
+  // @Get('check/:studentId/:startupId')
+  // checkMatch(@Param('studentId') studentId: string, @Param('startupId') startupId: string) {
+  //   return this.matchService.findByStudentAndStartup(+studentId, +startupId);
+  // }
   @Get('check/:studentId/:startupId')
-  checkMatch(@Param('studentId') studentId: string, @Param('startupId') startupId: string) {
-    return this.matchService.findByStudentAndStartup(+studentId, +startupId);
-  }
+async checkMatch(@Param('studentId') studentId: string, @Param('startupId') startupId: string) {
+  const match = await this.matchService.findByStudentAndStartup(+studentId, +startupId);
+  return match;
+}
 
   @Delete(':id')
   remove(@Param('id') id: string) {
