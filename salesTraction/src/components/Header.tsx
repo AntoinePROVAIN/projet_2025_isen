@@ -6,18 +6,20 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Button from "./Bouton";
 
+import { useNavigate } from 'react-router-dom'
 
 const Header: React.FC = () => {
     
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { t, i18n } = useTranslation();
+    const nav = useNavigate();
     
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
     return (
-        <header className="relative">
+        <header className="relative sticky top-0 z-45">
             <div className="mx-auto px-4 py-3 flex flex-row ">
                 <button
                     onClick={toggleMenu}
@@ -36,22 +38,28 @@ const Header: React.FC = () => {
                         <div className="px-4">
                             <ul className="space-y-10">
                             <li>
-                                <a href="#" className="block px-2 py-1">{t('whoami')}</a>
+                                <a href="/#description_speech" onClick={() => { toggleMenu(); }} className="block px-2 py-1">{t('whoami')}</a>
+                            </li>
+                            {/* <li>
+                                <a href="/" className="block px-2 py-1">{t('opinion')}</a>
                             </li>
                             <li>
-                                <a href="#" className="block px-2 py-1">{t('opinion')}</a>
-                            </li>
-                            <li>
-                                <a href="#" className="block px-2 py-1">{t('faq')}</a>
-                            </li>
+                                <a href="/" className="block px-2 py-1">{t('faq')}</a>
+                            </li> */}
                             </ul>
                         </div>
                     </nav>
                     <span className="my-10"></span>
                     <span className="my-10"></span>
                     <div className="space-y-10 py-10 px-16 flex flex-col justify-center">
-                        <Button onClick={()=>console.log('Etudiant')} children={t('student')} />
-                        <Button onClick={()=>console.log('Startup')} children={t('startup')} />
+                        <Button onClick={()=>{
+                                toggleMenu();
+                                nav("/connection/student");
+                            }} children={t('student')} />
+                        <Button onClick={()=>{
+                                toggleMenu();
+                                nav("/connection/entreprise");
+                            }} children={t('startup')} />
                     
                     </div>
                 </div>
@@ -62,3 +70,4 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+
