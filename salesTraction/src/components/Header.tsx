@@ -108,6 +108,7 @@ const Header: React.FC = () => {
                                     localStorage.removeItem("userId");
                                     localStorage.removeItem("userType");
                                     setIsConnected(false);
+                                    toggleMenu();
                                     nav('/');
                                 }} children={t('logout')}
                                 className=""/>
