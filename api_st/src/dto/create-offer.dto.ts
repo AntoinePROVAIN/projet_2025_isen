@@ -37,6 +37,16 @@ export class CreateOfferDto {
   product_image: string;
 
   @IsNotEmpty()
+  @IsString()
+  @Length(1, 255)
+  region: string;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  remote_or_physical: boolean;
+
+  @IsNotEmpty()
   @IsNumber()
   id_startup: number;
+
 }

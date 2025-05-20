@@ -29,6 +29,12 @@ export class SalesOffer {
   @Column({ length: 255 })
   product_image: string;
 
+  @Column({ length: 255 })
+  region: string;
+
+  @Column()
+  remote_or_physical: boolean;
+
   @ManyToOne(() => Startup, (startup) => startup.offers)
   @JoinColumn({ name: 'id_startup' })
   startup: Startup;

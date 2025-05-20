@@ -182,4 +182,15 @@ export class EnterprisePortalService {
       throw new BadRequestException('Erreur lors de la mise à jour du statut de validation');
     }
   }
+
+  async getEnterprise(enterpriseId: number): Promise<Startup> {
+      const enterprise = await this.startupRepository.findOne({
+        where: { id: enterpriseId },
+        relations: ['user']
+      });
+      if (!enterprise) {
+        throw new BadRequestException('Startup not found');
+      }
+      return enterprise;
+    }
 }

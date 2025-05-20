@@ -30,6 +30,8 @@ export class OfferService {
       target_customer: createOfferDto.target_customer,
       is_active: createOfferDto.is_active,
       product_image: createOfferDto.product_image,
+      region: createOfferDto.region,
+      remote_or_physical: createOfferDto.remote_or_physical,
       startup: startup
     });
 

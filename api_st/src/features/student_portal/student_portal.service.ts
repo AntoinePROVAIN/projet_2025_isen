@@ -174,4 +174,21 @@ async registerStudent(createDto: CreateStudentDto): Promise<Student> {
       throw new UnauthorizedException('Authentication failed');
     }
   }
+
+  async findAll(): Promise<Student[]> {
+    return this.studentRepository.find({
+      relations: ['user', 'languages.languageSpoken', 'sectorPreferences.sectorPreference']
+    });
+  }
+
+  async getStudent(studentId: number): Promise<Student> {
+    const student = await this.studentRepository.findOne({
+      where: { id: studentId },
+      relations: ['user', 'languages.languageSpoken', 'sectorPreferences.sectorPreference']
+    });
+    if (!student) {
+      throw new BadRequestException('Student not found');
+    }
+    return student;
+  }
 }
