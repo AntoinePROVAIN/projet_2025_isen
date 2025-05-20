@@ -10,6 +10,8 @@ import AdminDashboard from '../pages/admin_dashboard';
 import Marketplace from '../pages/marketplace';
 import ProfilePage from '../pages/ProfilePage';
 
+import Offers from '../pages/offers';
+
 function AppRoot() {
 
   return (
@@ -19,14 +21,12 @@ function AppRoot() {
             <Route path="/" element={<> < LandingPage/> </>} />
             <Route path="/inscription/etudiant" element={<> <InscriptionEtudiant /> </>} />
             <Route path="/inscription/entreprise" element={<> <InscriptionEntreprise /> </>} />
-            <Route path="/connexion/etudiant" element={<> <ConnexionEtudiant /> </>} />
-            <Route path="/connexion/entreprise" element={<> <ConnexionEntreprise /> </>} />
-            <Route path="/marketplace/etudiant" element={<> <MarketPlaceEtudiant /> </>} />
-            <Route path="/marketplace/entreprise" element={<> <MarketPlaceEntreprise /> </>} />
+            <Route path="/connection/:personne" element={<> <Connexion /> </>} />
             <Route path="/admin" element={<> <ConnexionAdmin /> </>} />
             <Route path="/admin/dashboard" element={<> <AdminDashboard /> </>} />
             <Route path="/marketplace" element={<Marketplace />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/student/offers" element={<> <Offers /> </>} />
             <Route path="*" element={<> <ErrorPage /> </>} />
         </Routes>
       </Router>
