@@ -16,13 +16,13 @@ function AppRoot() {
       <Router>
         <Routes>
             <Route path="/" element={<> < LandingPage/> </>} />
-            <Route path="/inscription/etudiant" element={<> <InscriptionEtudiant /> </>} />
-            <Route path="/inscription/entreprise" element={<> <InscriptionEntreprise /> </>} />
+            <Route path="/inscript/student" element={<> <InscriptionEtudiant /> </>} />
+            <Route path="/inscript/startup" element={<> <InscriptionEntreprise /> </>} />
             <Route path="/connection/:personne" element={<> <Connexion /> </>} />
             <Route path="/admin" element={<> <ConnexionAdmin /> </>} />
             <Route path="/admin/dashboard" element={<> <AdminDashboard /> </>} />
             <Route path="/student/dashboard" element={<> <StudentSwipeOffers studentId={1} /> </>} />
-            <Route path="/entreprise/dashboard" element={<>  </>} />
+            <Route path="/enterprise/dashboard" element={<>  </>} />
             <Route path="*" element={<> <ErrorPage /> </>} />
         </Routes>
       </Router>
