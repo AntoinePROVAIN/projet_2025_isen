@@ -38,7 +38,7 @@ function Connexion() {
         localStorage.setItem('token', token);
         localStorage.setItem('userId', JSON.stringify(student.user.id));
         localStorage.setItem('userType', (personne));
-        nav("/student/dashboard");
+        nav("/marketplace");
       } catch (err: any) {
         setError(err.message);
       }
@@ -48,7 +48,7 @@ function Connexion() {
         localStorage.setItem('token', token);
         localStorage.setItem('userId', JSON.stringify(startup.user.id));
         localStorage.setItem('userType', (personne));
-        nav("/enterprise/dashboard");
+        nav("/marketplace");
       } catch (err: any) {
         setError(err.message);
       }

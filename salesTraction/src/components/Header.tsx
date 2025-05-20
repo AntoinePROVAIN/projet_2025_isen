@@ -12,7 +12,7 @@ const Header: React.FC = () => {
     
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isConnected, setIsConnected] = useState(false);
-    const [isConnected, setIsConnected] = useState(false);
+    
     const { t, i18n } = useTranslation();
     const nav = useNavigate();
 
@@ -42,31 +42,7 @@ const Header: React.FC = () => {
     }, [token, userId, userType]);
 
 
-    const [token, setToken] = useState("");
-    const [userId, setUserId] = useState("");
-    const [userType, setUserType] = useState("");
     
-    useEffect(() => {
-        const localToken = localStorage.getItem("token");
-        if(localToken) setToken(localToken);
-        
-        const localUserId = localStorage.getItem("userId");
-        if (localUserId) setUserId(localUserId);
-
-        const localUserType = localStorage.getItem('userType');
-        if (localUserType) setUserType(localUserType);
-        
-    }, [])
-
-    useEffect(() => {
-        if(token && userId && userType){
-            setIsConnected(true);
-            console.log("connecté : "+isConnected);
-        }else{
-            console.log("pas connecté : "+isConnected); 
-        }
-    }, [token, userId, userType]);
-
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };

@@ -10,7 +10,7 @@ import AdminDashboard from '../pages/admin_dashboard';
 import Marketplace from '../pages/marketplace';
 import ProfilePage from '../pages/ProfilePage';
 
-import Offers from '../pages/offers';
+import Offers from '../pages/Offers';
 
 function AppRoot() {
 
