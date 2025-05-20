@@ -1,0 +1,16 @@
+.texte_lien{
+    /* display: grid; */
+    /* grid-template-columns: 1fr 1fr; */
+    margin-bottom: 1em;
+    font-style: italic;
+}
+
+.leftLink {
+    text-align: left;
+    cursor: pointer;
+}
+
+.rightLink {
+    text-align: right;
+    cursor: pointer;
+}
