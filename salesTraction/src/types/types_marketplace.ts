@@ -67,7 +67,7 @@ export interface Offer {
   };
 }
 
-export interface Like {
+export interface LikeOffer {
    id: number;
    id_student: number;
    salesOffer?: {
@@ -92,6 +92,24 @@ export interface Like {
   },
   motivation_text: string;
   application_date: string;
+}
+
+export interface LikeStudent {
+    id: Number;
+    id_student: Number;
+    student?: {
+      id: number;
+      first_name: string;
+      last_name: string;
+      university: string;
+      linkedin_url: string;
+      starting_date: string;
+      ending_date: string;
+      profil_picture: string;
+      birth_date: string;
+    },
+    motivation_text: string;
+    application_date: string;
 }
 
 export interface Match {

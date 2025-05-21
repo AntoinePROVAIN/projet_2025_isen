@@ -36,7 +36,7 @@ function Connexion() {
       try {
         const { token, student } = await login_student(email, password);
         localStorage.setItem('token', token);
-        localStorage.setItem('userId', JSON.stringify(student.user.id));
+        localStorage.setItem('userId', JSON.stringify(student.id));
         localStorage.setItem('userType', (personne));
         nav("/marketplace");
       } catch (err: any) {
@@ -46,7 +46,7 @@ function Connexion() {
       try {
         const { token, startup } = await login_startup(email, password);
         localStorage.setItem('token', token);
-        localStorage.setItem('userId', JSON.stringify(startup.user.id));
+        localStorage.setItem('userId', JSON.stringify(startup.id));
         localStorage.setItem('userType', (personne));
         nav("/marketplace");
       } catch (err: any) {

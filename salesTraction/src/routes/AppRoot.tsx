@@ -36,7 +36,8 @@ function AppRoot() {
             <Route path="/matches" element={<MatchesListPage />} />
             <Route path="/messages/:matchId" element={<MessagePage />} />
 
-            <Route path="/student/offers" element={<> <Offers /> </>} />
+            <Route path="/offers" element={<> <Offers /> </>} />
+            <Route path="/offers/:id_offer" element={<> <OneOffer /> </>} />
             <Route path="*" element={<> <ErrorPage /> </>} />
         </Routes>
       </Router>

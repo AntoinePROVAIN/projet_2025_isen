@@ -42,8 +42,8 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from "react-i18next";
-import { ChevronRight, Check, X, MapPin, Globe } from 'lucide-react';
-import { Like, Offer } from '../types/types_marketplace';
+import { ChevronRight, Check, X, MapPin, Globe, Heart } from 'lucide-react';
+import { LikeOffer, LikeStudent, Offer } from '../types/types_marketplace';
 import OfferService from '../services/api_service_offer';
 import Header from '../components/Header';
 import LikeService from '../services/api_service_like';
@@ -62,6 +62,9 @@ const OneOffer = () => {
     const [token, setToken] = useState("");
     const [userId, setUserId] = useState("");
     const [userType, setUserType] = useState("");
+
+    const [students, setStudents] = useState<LikeStudent[]>([]);
+
     useEffect(() => {
         const localToken = localStorage.getItem("token");
         if(localToken) setToken(localToken);
@@ -91,12 +94,16 @@ const OneOffer = () => {
             setLoading(false);
           }
       };
-      fetchOffer();
-
-   
-    
-    
+      fetchOffer(); 
   }, [userId,userType]);
+
+  useEffect(() =>{
+    // const fetchStudentLike = async () => {
+    //     try{
+
+    //     }
+    // }
+  })
 
 
   if (loading) {
@@ -139,6 +146,7 @@ const OneOffer = () => {
                   <span className="text-gray-400">Aucune image disponible</span>
                 </div>
                 )}
+                
             </div>
         
             {/* Informations de l'offre */}
@@ -146,6 +154,7 @@ const OneOffer = () => {
                 {/* En-tête avec titre et statut */}
                 <div className="flex justify-between items-start mb-6">
                     <h2 className="text-2xl font-bold text-gray-800">{offer.title}</h2>
+                    
                     <div className={`px-3 py-1 rounded-full text-sm font-medium ${
                         offer.is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                         }`}>
