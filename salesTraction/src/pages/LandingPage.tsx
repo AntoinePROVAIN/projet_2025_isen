@@ -34,7 +34,7 @@ function LandingPage() {
         <span className='my-10'></span>
         <div className="space-y-10 py-14 px-14 flex flex-col justify-center">
             <Button onClick={()=>nav("/connection/student")} children={t('student')} />
-            <Button onClick={()=>nav("/connection/entreprise")} children={t('startup')} />
+            <Button onClick={()=>nav("/connection/startup")} children={t('startup')} />
         </div>
 
         <div id='description_speech' className='space-y-12 py-16 px-5 bg-gray-200  shadow-lg border border-gray-200 rounded-2xl p-6 max-w-4xl mx-auto mt-10'>

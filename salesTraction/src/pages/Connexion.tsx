@@ -17,7 +17,7 @@ function Connexion() {
   const compteExist = () => {
     if (personne == "student") {
       nav("/inscript/student"); // a modifier pour mettre celle de l'entreprise
-    } else if (personne == "entreprise") {// a modifier peut etre
+    } else if (personne == "startup") {// a modifier peut etre
       nav("/inscript/startup");
     } else {
       nav("/")
@@ -31,7 +31,7 @@ function Connexion() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("personne "+personne);
+    setError("");
     if (personne === "student") {
       try {
         const { token, student } = await login_student(email, password);
@@ -42,7 +42,7 @@ function Connexion() {
       } catch (err: any) {
         setError(err.message);
       }
-    } else if (personne === "entreprise") {
+    } else if (personne === "startup") {
       try {
         const { token, startup } = await login_startup(email, password);
         localStorage.setItem('token', token);

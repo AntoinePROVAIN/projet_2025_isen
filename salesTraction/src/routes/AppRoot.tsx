@@ -24,7 +24,7 @@ function AppRoot() {
             <Route path="/connection/:personne" element={<> <Connexion /> </>} />
             <Route path="/admin" element={<> <ConnexionAdmin /> </>} />
             <Route path="/admin/dashboard" element={<> <AdminDashboard /> </>} />
-            <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="/marketplace" element={<Marketplace />} /> 
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/student/offers" element={<> <Offers /> </>} />
             <Route path="*" element={<> <ErrorPage /> </>} />

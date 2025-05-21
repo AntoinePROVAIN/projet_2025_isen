@@ -91,7 +91,7 @@ const Header: React.FC = () => {
                                 }} children={t('student')} />
                             <Button onClick={()=>{
                                     toggleMenu();
-                                    nav("/connection/entreprise");
+                                    nav("/connection/startup");
                                 }} children={t('startup')} />
                         </div>
                     </>) : (
