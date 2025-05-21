@@ -192,9 +192,9 @@ function Marketplace() {
     );
   }
 
-  return (
+  return (<> <Header /> 
     <div className="swipe-container">
-      <Header />
+      
       <div className="offers-counter">
         {currentIndex + 1} / {totalItems}
       </div>
@@ -249,7 +249,7 @@ function Marketplace() {
           isSubmitting={isSubmitting}
         />
       )}
-    </div>
+    </div></>
   );
 }
 
