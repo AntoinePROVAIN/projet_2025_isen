@@ -1,7 +1,8 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { UserType, Student, Offer, OfferFilters } from '../types/types_marketplace';
 
 export function useDataFetching(userType: UserType) {
+  // Always declare all state hooks at the top level, regardless of user type
   const [offers, setOffers] = useState<Offer[]>([]);
   const [students, setStudents] = useState<Student[]>([]);
   const [allOffers, setAllOffers] = useState<Offer[]>([]);

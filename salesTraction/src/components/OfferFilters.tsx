@@ -43,6 +43,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
       <button 
         className="filter-toggle-button"
         onClick={onToggleFilters}
+        id='show-filters'
       >
         Show Filters
       </button>

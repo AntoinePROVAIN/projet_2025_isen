@@ -619,8 +619,8 @@
 
 .filter-toggle-button {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 12em;
+  left: 5px;
   background-color: #5c6bc0;
   color: white;
   border: none;
@@ -772,6 +772,10 @@
 .reset-filters-button:hover {
   background-color: #e0e0e0;
   color: #333;
+}
+
+button#show-filters {
+    width: 25%;
 }
 
 /* Responsive adjustments */

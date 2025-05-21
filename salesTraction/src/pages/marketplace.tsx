@@ -17,11 +17,6 @@ import Header from '../components/Header';
 function Marketplace() {
   const { userType, userId } = useUserDetection();
 
-  // Don't render anything until we have user info
-  if (!userType) {
-    return <LoadingState message="Detecting user information..." />;
-  }
-
   const { 
     offers, 
     students, 
