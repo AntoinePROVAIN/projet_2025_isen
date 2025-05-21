@@ -8,7 +8,7 @@ function InscriptionEtudiant() {
 
   const nav = useNavigate();
 
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [birth_date, setBirthDate] = useState(""); // date
@@ -32,20 +32,18 @@ function InscriptionEtudiant() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    const start = new Date(starting_date);
+    const end = new Date(ending_date);
+
     if (languages.length === 0) {
-      alert("Veuillez ajouter au moins une langue.");
+      setError("The language is empty")
       return;
     }
-    // console.log("date ", birth_date, starting_date, ending_date)
-    // console.log("table ", languages)
-    // console.log("sector ", sectorPreferences)
-    // console.log("profil ", profil_picture?.name);
-    // console.log("em ", email)
-    // console.log("pass ", password)
-    // console.log("first ", first_name)
-    // console.log("last ", last_name)
-    // console.log("uni ", university)
-    // console.log("link ", linkedin_url)
+
+    if (start >= end) {
+      setError("The starting date have to be below the ending date");
+      return;
+    }
 
     try {
       const result = await register_student({
@@ -69,16 +67,6 @@ function InscriptionEtudiant() {
     }
   };
 
-  useEffect(() => {
-    RecupName(name);
-  }, [name]);
-  
-  const RecupName = (str: string) => {
-    const [firstN, last_name] =  str.split(" ", 5);
-    setFirstName(firstN);
-    setLastName(last_name);
-  }
-
   return (
     <>
       <Header/>
@@ -90,8 +78,10 @@ function InscriptionEtudiant() {
               <input type='email' id="email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
               <label className="labels">Birth Date</label>
               <input type='date' id="birth_date" name='birth_date' value={birth_date} onChange={(e) => setBirthDate(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
-              <label className="labels">First Name/ Last Name</label>
-              <input type='text' id="name" name='name' value={name} onChange={(e) => setName(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
+              <label className="labels">First Name</label>
+              <input type='text' id="fn" name='fn' value={first_name} onChange={(e) => setFirstName(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
+              <label className="labels">Last Name</label>
+              <input type='text' id="lname" name='lname' value={last_name} onChange={(e) => setLastName(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
               <label className="labels">linkedin_url</label>
               <input type='url' id="linkedin_url" name='linkedin_url' value={linkedin_url} onChange={(e) => setLinkedinUrl(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
               <label className="labels">University</label>
@@ -103,16 +93,34 @@ function InscriptionEtudiant() {
                 <button type="button" className="button_plus bg-cyan-400 text-white rounded w-[10%] min-w-[40px] h-10 flex items-center justify-center" onClick={() => {const trimmed = secteurInput.trim();if (trimmed && !sectorPreferences.includes(trimmed)) {setSectorPreferences([...sectorPreferences, trimmed]);setSecteurInput("");}}}>+</button>
               </div>
 
+              <div className="flex flex-wrap gap-2 mb-4">
+                {sectorPreferences.map((pref, index) => (
+                  <div key={index} className="flex items-center bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-sm shadow-sm">
+                    <span>{pref}</span>
+                    <button type="button" onClick={() => setSectorPreferences(sectorPreferences.filter((_, i) => i !== index))} className="ml-2 text-cyan-800 hover:text-red-500 font-bold focus:outline-none">✕</button>
+                  </div>
+                ))}
+              </div>
+
               <label className="labels mb-2">Speaking languages</label>
               <div className="flex items-stretch gap-2 mb-4">
                 <input type="text" id="lang" name="lang" value={languageInput} onChange={(e) => setLanguageInput(e.target.value)} className="border rounded px-2 w-[90%] h-10 focus:outline-none"/>
                 <button type="button" onClick={() => {const trimmed = languageInput.trim(); if (trimmed && !languages.includes(trimmed)) {setLanguages([...languages, trimmed]);setLanguageInput("");}}}className="button_plus bg-cyan-400 text-white rounded w-[10%] min-w-[40px] h-10 flex items-center justify-center">+</button>
               </div>
 
+              <div className="flex flex-wrap gap-2 mb-4">
+                {languages.map((pref, index) => (
+                  <div key={index} className="flex items-center bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-sm shadow-sm">
+                    <span>{pref}</span>
+                    <button type="button" onClick={() => setLanguages(languages.filter((_, i) => i !== index))} className="ml-2 text-cyan-800 hover:text-red-500 font-bold focus:outline-none">✕</button>
+                  </div>
+                ))}
+              </div>
+
               <label className="labels">Availability</label>
               <input type='date' id='start' name='start' value={starting_date} onChange={(e) => setStartingDate(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
               <input type='date' id='end' name='end' value={ending_date} onChange={(e) => setEndingDate(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
-              <input type="file" accept="imbirth_date/png, imbirth_date/jpeg, imbirth_date/jpg" id="img" name="img" onChange={(e: React.ChangeEvent<HTMLInputElement>) => {if (e.target.files && e.target.files[0]) {setProfilPicture(e.target.files[0]);}}} className="auth_input w-full p-2 text-sm border rounded file:mr-3 file:py-2 file:px-4 file:border-0 file:rounded file:bg-blue-500 file:text-white file:text-sm" required/>
+              <input type="file" accept="image/png, image/jpeg, image/jpg" id="img" name="img" onChange={(e: React.ChangeEvent<HTMLInputElement>) => {if (e.target.files && e.target.files[0]) {setProfilPicture(e.target.files[0]);}}} className="auth_input w-full p-2 text-sm border rounded file:mr-3 file:py-2 file:px-4 file:border-0 file:rounded file:bg-blue-500 file:text-white file:text-sm" required/>
               <label className="labels">Password</label>
               <input type='password' id='pwd' name='pwd' value={password} onChange={(e) => setPassword(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
               <div className='auth_buttons flex flex-col md:flex-row justify-between gap-4'>
