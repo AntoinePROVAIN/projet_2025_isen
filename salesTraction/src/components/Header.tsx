@@ -103,6 +103,9 @@ const Header: React.FC = () => {
                                 <a href="/offers" className="block px-2 py-1">
                                     {t('myOffer')}
                                 </a>
+                                <a href="/matches" className="block px-2 py-1">
+                                    {t('messages')}
+                                </a>
                                 <a href="/profile" className="block px-2 py-1">
                                     {t('profil')}
                                 </a>
