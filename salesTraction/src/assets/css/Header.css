@@ -1,18 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap');
 
-/* header div {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center; 
-} */
-/* header div button {
-    margin-right: 1em;
-} */
 header div h1 {
     font-family: "Jacques Francois Shadow", serif;
     font-size: 2rem;
     font-style: normal;
 }
 
+/* Make sure our CSS doesn't interfere with z-index settings */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
 
+/* Add some space at the top of the body to account for the fixed header */
+body {
+    padding-top: 60px;
+}

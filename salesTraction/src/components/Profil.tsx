@@ -70,14 +70,15 @@ type EnterpriseProfile = {
 };
 
 function Profile() {
-  const { userType, userId: detectedUserId } = useUserDetection();
+  const { userId: detectedUserId } = useUserDetection();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [profileData, setProfileData] = useState<StudentProfile | EnterpriseProfile | null>(null);
   
   // Get userId from multiple possible sources
   const userId = detectedUserId || getUserIdFromStorage();
-
+  const userType = localStorage.getItem('userType');
+  
   useEffect(() => {
     const fetchProfile = async () => {
       // Check if we have a valid userId from any source

@@ -11,6 +11,7 @@ export function useUserDetection() {
       try {
         const token = localStorage.getItem('token');
         const userTypeFromStorage = localStorage.getItem('userType'); // 'student' or 'startup'
+        console.log('type:',userTypeFromStorage);
         const userIdFromStorage = localStorage.getItem('userId');
         
         if (userTypeFromStorage && userIdFromStorage) {

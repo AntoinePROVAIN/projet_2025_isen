@@ -784,7 +784,7 @@ button#show-filters {
     width: 100%;
     max-width: 100%;
     height: 100vh;
-    top: 0;
+    top: 10em;
     right: 0;
     border-radius: 0;
     max-height: none;
