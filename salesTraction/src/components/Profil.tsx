@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useUserDetection } from '../hooks/userUserDetection';
+import Header from './Header';
 
 // Helper function to check localStorage for user ID directly
 const getUserIdFromStorage = (): number | null => {
@@ -162,8 +163,10 @@ function Profile() {
   if (userType === 'student') {
     const studentData = profileData as StudentProfile;
     
-    return (
+    return (<>
+      <Header/>
       <div className="student-profile mx-auto px-4 py-6 max-w-4xl">
+        
         <h1 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">Student Profile</h1>
         
         {/* Profile Header - Mobile & Desktop */}
@@ -277,7 +280,7 @@ function Profile() {
             </div>
           </div>
         </div>
-      </div>
+      </div></>
     );
   }
   

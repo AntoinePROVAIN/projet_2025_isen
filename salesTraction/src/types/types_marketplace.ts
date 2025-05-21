@@ -67,6 +67,33 @@ export interface Offer {
   };
 }
 
+export interface Like {
+   id: number;
+   id_student: number;
+   salesOffer?: {
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    commission: number;
+    target_customer: string;
+    is_active: boolean;
+    product_image: string;
+    region: string;
+    remote_or_physical: boolean;
+    startup?: {
+      id: number;
+      company_name?: string;
+      siret?: string;
+      description?: string;
+      secteur?: string;
+      is_validated?: boolean;
+    };
+  },
+  motivation_text: string;
+  application_date: string;
+}
+
 export interface Match {
   id: number;
   date_match: string;
@@ -75,7 +102,7 @@ export interface Match {
   messages?: any[];
 }
 
-export type UserType = 'student' | 'enterprise';
+export type UserType = 'student' | 'startup';
 
 export interface OfferFilters {
   region?: string;

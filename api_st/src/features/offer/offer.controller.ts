@@ -18,6 +18,12 @@ export class OfferController {
     return this.offerService.findAll();
   }
 
+  @Get('startup/:id_startup')
+  findAllById_startup(@Param('id_startup') id_startup: number) {
+    console.log("controller : "+id_startup);
+    return this.offerService.findAllById_startup(id_startup);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.offerService.findOne(+id);

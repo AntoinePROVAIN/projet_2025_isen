@@ -225,6 +225,7 @@ import LoadingState from '../components/LoadingState';
 import EmptyState from '../components/EmptyState';
 import { Offer, Student, Match, UserType, OfferFilters } from '../types/types_marketplace';
 import '../assets/css/marketplace_student.css';
+import Header from '../components/Header';
 
 function Marketplace() {
   const { userType, userId } = useUserDetection();
@@ -383,7 +384,9 @@ function Marketplace() {
   
   // Show empty state when no more items
   if (!currentItem && !showMatchModal) {
-    return <EmptyState userType={userType} />;
+    return (<><Header />
+              <EmptyState userType={userType} />
+            </>);
   }
 
   // Show match modal
@@ -403,6 +406,7 @@ function Marketplace() {
 
   return (
     <div className="swipe-container">
+      <Header />
       <div className="offers-counter">
         {currentIndex + 1} / {totalItems}
       </div>
@@ -420,7 +424,7 @@ function Marketplace() {
       )}
       
       {/* Loading overlay for enterprise likes */}
-      {isSubmitting && userType === 'enterprise' && (
+      {isSubmitting && userType === 'startup' && (
         <div className="loading-overlay">
           <div className="loading-spinner">
             <p>Submitting like...</p>

@@ -44,6 +44,18 @@ export class OfferService {
     });
   }
 
+  async findAllById_startup(id_startup: number): Promise<SalesOffer[]>{
+    console.log(id_startup);
+    return this.salesOfferRepository.find({
+      where: {
+        startup: {
+          id: id_startup,
+        },
+      },
+      relations: ['startup', 'documents']
+    });
+  }
+
   async findOne(id: number): Promise<SalesOffer> {
     const offer = await this.salesOfferRepository.findOne({
       where: { id },

@@ -63,7 +63,7 @@ const Header: React.FC = () => {
                 <div className="w-8"></div>
             </div>
             {/* {isMenuOpen && ( */}
-                <div className={`fixed bg-white left-0 top-32 w-full lg:w-80 h-screen flex flex-col z-40 transform transition-transform duration-300 ease-in-out 
+                <div className={`fixed bg-white left-0 top-32 w-full lg:w-80 h-screen flex flex-col z-50 transform transition-transform duration-300 ease-in-out 
                 ${ isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 {!isConnected ? (
                     <>
@@ -97,10 +97,13 @@ const Header: React.FC = () => {
                     </>) : (
                         <>
                             <div className="py-10 px-16 space-y-6">
-                                <a href="/dashboard" className="block px-2 py-1">
+                                <a href="/marketplace" className="block px-2 py-1">
+                                    {t('exploreOffer')}
+                                </a>
+                                <a href="/offers" className="block px-2 py-1">
                                     {t('myOffer')}
                                 </a>
-                                <a href="/profil" className="block px-2 py-1">
+                                <a href="/profile" className="block px-2 py-1">
                                     {t('profil')}
                                 </a>
                             </div>

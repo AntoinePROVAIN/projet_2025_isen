@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import Header from '../components/Header';
+
 import LandingPage from '../pages/LandingPage';
 import Connexion from '../pages/Connexion';
 import InscriptionEntreprise from '../pages/InscriptionEntreprise';
@@ -11,6 +13,7 @@ import Marketplace from '../pages/marketplace';
 import ProfilePage from '../pages/ProfilePage';
 
 import Offers from '../pages/Offers';
+import OneOffer from '../pages/OneOffer';
 
 function AppRoot() {
 
@@ -26,7 +29,8 @@ function AppRoot() {
             <Route path="/admin/dashboard" element={<> <AdminDashboard /> </>} />
             <Route path="/marketplace" element={<Marketplace />} /> 
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/student/offers" element={<> <Offers /> </>} />
+            <Route path="/offers" element={<> <Offers /> </>} />
+             <Route path="/offers/:id_offer" element={<> <OneOffer /> </>} />
             <Route path="*" element={<> <ErrorPage /> </>} />
         </Routes>
       </Router>
