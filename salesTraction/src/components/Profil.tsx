@@ -288,6 +288,8 @@ function Profile() {
   else {
     const enterpriseData = profileData as EnterpriseProfile;
     return (
+      <>
+      <Header/>
       <div className="enterprise-profile mx-auto px-4 py-6 max-w-4xl">
         <h1 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">Enterprise Profile</h1>
         
@@ -339,7 +341,7 @@ function Profile() {
             </p>
           </div>
         </div>
-      </div>
+      </div></>
     );
   }
 }

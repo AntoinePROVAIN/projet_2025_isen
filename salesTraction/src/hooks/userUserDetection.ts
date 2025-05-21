@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { UserType } from '../types/types_marketplace';
 
 export function useUserDetection() {
-  const [userType, setUserType] = useState<UserType>('student');
+  const [userType, setUserType] = useState<UserType>();
   const [userId, setUserId] = useState<number>(0);
 
   useEffect(() => {
