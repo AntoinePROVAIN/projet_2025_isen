@@ -147,7 +147,9 @@ const OffersList = () => {
         {offers.map((offer) => (
     
           <OfferItem offer={offer} userId={parseInt(userId)} />
+
         ))}
+        <Button onClick={()=>nav('/create_offer')} children={"Créer de nouvelles offres"} />
       </div> : <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {likes.map((like) => (
           <LikeItem like={like} userId={parseInt(userId)} />
