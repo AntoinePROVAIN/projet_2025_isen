@@ -64,7 +64,7 @@ textarea {
   margin-top: 20px;
 }
 
-button {
+.button {
   padding: 12px 24px;
   background-color: #2563eb;
   color: white;
@@ -75,11 +75,11 @@ button {
   transition: background-color 0.2s;
 }
 
-button:hover {
+.button:hover {
   background-color: #1d4ed8;
 }
 
-button:disabled {
+.button:disabled {
   background-color: #93c5fd;
   cursor: not-allowed;
 }

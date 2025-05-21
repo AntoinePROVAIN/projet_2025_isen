@@ -220,7 +220,7 @@ function MessagePage() {
       <div className="messaging-container error">
         <div className="error-message">
           <p>{error}</p>
-          <button onClick={() => window.location.reload()}>Try Again</button>
+          <button className="button" onClick={() => window.location.reload()}>Try Again</button>
         </div>
       </div>
     );
@@ -229,7 +229,7 @@ function MessagePage() {
   return (
     <div className="messaging-container">
       <div className="message-header">
-        <button className="back-button" onClick={() => navigate('/matches')}>
+        <button className="back-button button" onClick={() => navigate('/matches')}>
           &larr; Back to Matches
         </button>
         <div className="chat-with">
@@ -284,7 +284,7 @@ function MessagePage() {
         />
         <button 
           type="submit" 
-          className="send-button"
+          className="send-button button"
           disabled={!newMessage.trim()}
         >
           Send

@@ -249,7 +249,7 @@ const CreateOfferPage: React.FC = () => {
         </div>
         
         <div className="form-actions">
-          <button type="submit" disabled={loading}>
+          <button className="button" type="submit" disabled={loading}>
             {loading ? 'Creating...' : 'Create Offer'}
           </button>
         </div>
