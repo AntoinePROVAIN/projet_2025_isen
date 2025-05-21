@@ -1,6 +1,7 @@
 import React, { useState, FormEvent, useEffect } from 'react';
 import '../assets/css/CreateOfferPage.css';
 import Header from '../components/Header';
+import { useNavigate } from 'react-router-dom';
 
 interface CreateOfferFormData {
   title: string;
@@ -32,6 +33,8 @@ const CreateOfferPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
+
+  const nav = useNavigate();
 
   useEffect(() => {
     // Get startup ID from localStorage
@@ -111,6 +114,7 @@ const CreateOfferPage: React.FC = () => {
       setTimeout(() => {
         setSuccess(false);
       }, 3000);
+      nav('/offers');
     } catch (err) {
       console.error('Error creating offer:', err);
       setError('Failed to create offer. Please try again.');
