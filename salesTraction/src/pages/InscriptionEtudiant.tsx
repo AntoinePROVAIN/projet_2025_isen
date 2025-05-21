@@ -55,14 +55,14 @@ function InscriptionEtudiant() {
         last_name,
         university,
         linkedin_url,
-        starting_date: new Date(starting_date),
-        ending_date: new Date(ending_date),
+        starting_date: new Date(starting_date.split("T")[0]),
+        ending_date: new Date(ending_date.split("T")[0]),
         profile_picture: String(profil_picture?.name),
-        birth_date: new Date(birth_date),
-        secteur: sectorPreferences,
-        language: languages,
+        birth_date: new Date(birth_date.split("T")[0]),
+        sector_preferences: sectorPreferences,
+        languages: languages,
       });
-      console.log('Inscription réussie :', result.student);
+      // console.log('Inscription réussie :', result.student);
       nav('/connection/student');
     } catch (err: any) {
       setError(err.message);

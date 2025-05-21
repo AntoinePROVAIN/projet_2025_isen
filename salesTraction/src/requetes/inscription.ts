@@ -34,8 +34,8 @@ export async function register_student(data: {
     ending_date: Date;
     profile_picture: string;
     birth_date: Date;
-    secteur: string[];
-    language: string[];
+    sector_preferences: string[];
+    languages: string[];
 }): Promise<{ student: any }> {
   const response = await fetch('http://localhost:3000/student-portal/register', {
     method: 'POST',
@@ -50,6 +50,5 @@ export async function register_student(data: {
     throw new Error(error.message || 'Registration failed');
   }
 
-  console.log("resp ", response.json());
   return response.json();
 }

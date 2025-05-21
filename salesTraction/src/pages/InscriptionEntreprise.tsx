@@ -23,6 +23,12 @@ function InscriptionEntreprise() {
   const handleSubmit = async (e: React.FormEvent) => {
     setError("");
     e.preventDefault();
+
+    if (siret.length !== 14) {
+      setError("Le numéro doit contenir exactement 14 chiffres.");
+      return;
+    }
+
     try {
       const result = await register_startup({
         email,
@@ -50,12 +56,12 @@ function InscriptionEntreprise() {
                     <label className="labels">Email</label>
                     <input type='email' id="email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
                     <label className="labels">SIRET's number</label>
-                    <input type='text' id="siret" name='siret' value={siret} onChange={(e) => setSiret(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
+                    <input type='number' id="siret" name='siret' maxLength={14} value={siret} onChange={(e) => {const val = e.target.value;if (/^\d{0,14}$/.test(val)) {setSiret(val);}}} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
                     <label className="labels">Company's name</label>
                     <input type='text' id="name" name='name' value={company_name} onChange={(e) => setCompanyName(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
-                    <label className="labels">secteurs</label>
+                    <label className="labels">Sectors</label>
                     <input type='text' id="secteur" name='secteur' value={secteur} onChange={(e) => setSecteur(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
-                    <label className="labels">descriptionription</label>
+                    <label className="labels">Description</label>
                     <input type='text' id="description" name='description' value={description} onChange={(e) => setDescription(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
                     <label className="labels">Password</label>
                     <input type='password' id='pwd' name='pwd' value={password} onChange={(e) => setPassword(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
