@@ -26,15 +26,16 @@ import { DocumentModule } from './features/document_offer/document.module';
 import { MatchModule } from './features/match/match.module';
 import { LikeModule } from './features/like/like.module';
 import { AdminModule } from './features/admin/admin.module';
+import { MessageModule } from './features/message/message.module';
 
 @Module({
   imports: [StudentPortalModule, EnterprisePortalModule,TypeOrmModule.forRoot({
     type: 'postgres',
-    host: '127.0.0.1',           // ou l'IP de ton serveur
+    host: 'localhost',           // ou l'IP de ton serveur
     port: 5432,
-    username: 'sales_traction',        // ton nom d'utilisateur
-    password: 'sales_traction',      // ton mot de passe
-    database: 'sales_traction',  
+    username: 'postgres',        // ton nom d'utilisateur
+    password: 'isen35',      // ton mot de passe
+    database: 'sales_traction', 
     entities: [
       Student,
       User,
@@ -49,7 +50,8 @@ import { AdminModule } from './features/admin/admin.module';
       SalesDocuments,
       SectorPreference,
       Commission,
-      LanguageSpoken
+      LanguageSpoken,
+      MessageModule
     ],
     autoLoadEntities: true,
     synchronize: true,           // à mettre sur false en prod

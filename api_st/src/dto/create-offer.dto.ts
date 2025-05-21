@@ -27,9 +27,8 @@ export class CreateOfferDto {
   @Length(1, 255)
   target_customer: string;
 
-  @IsNotEmpty()
   @IsBoolean()
-  is_active: boolean;
+  is_active: boolean = true;
 
   @IsNotEmpty()
   @IsString()

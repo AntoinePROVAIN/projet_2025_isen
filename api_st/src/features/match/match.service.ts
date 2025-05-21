@@ -43,16 +43,6 @@ export class MatchService {
     return match;
   }
 
-  // async findByStudentAndStartup(studentId: number, startupId: number): Promise<Match | null> {
-  //   return this.matchRepository.findOne({
-  //     where: { 
-  //       student: { id: studentId },
-  //       startup: { id: startupId }
-  //     },
-  //     relations: ['student', 'startup', 'messages']
-  //   });
-  // }
-
 async findByStudentAndStartup(studentId: number, startupId: number): Promise<Match | null> {
   const match = await this.matchRepository.findOne({
     where: { 

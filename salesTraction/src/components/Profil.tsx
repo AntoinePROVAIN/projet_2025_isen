@@ -291,7 +291,7 @@ function Profile() {
       <>
       <Header/>
       <div className="enterprise-profile mx-auto px-4 py-6 max-w-4xl">
-        <h1 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">Enterprise Profile</h1>
+        <h1 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">Startup Profile</h1>
         
         {/* Profile Header - Mobile & Desktop */}
         <div className="profile-header mb-6 bg-white p-4 rounded-lg shadow text-center sm:text-left">
@@ -336,8 +336,8 @@ function Profile() {
             </h3>
             <p className={`my-2 text-sm sm:text-base py-1 px-3 rounded-full inline-flex items-center ${enterpriseData.is_validated ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}`}>
               {enterpriseData.is_validated 
-                ? "✅ Account Validated" 
-                : "⚠️ Account Pending Validation"}
+                ? "⚠️ Account Pending Validation" 
+                : "✅ Account Validated"}
             </p>
           </div>
         </div>

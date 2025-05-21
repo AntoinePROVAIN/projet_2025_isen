@@ -1,20 +1,43 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Offer, Student, UserType } from '../types/types_marketplace';
 
 interface MatchModalProps {
   matchedItem: Offer | Student | null;
   userType: UserType;
   onClose: () => void;
-  onSendMessage: () => void;
 }
 
 const MatchModal: React.FC<MatchModalProps> = ({
   matchedItem,
   userType,
-  onClose,
-  onSendMessage
+  onClose
 }) => {
+  const navigate = useNavigate();
+  
   if (!matchedItem) return null;
+  
+  // Handle sending the first message and navigating to the chat
+  const handleSendMessage = async () => {
+    if (!matchedItem) return;
+    
+    try {
+      // Get the match ID from the matchedItem
+      //const matchId = (matchedItem as any).id
+      const matchId = localStorage.getItem("matchId");
+
+      if (matchId) {
+        // Create initial system message
+        
+        // Navigate to the message page
+        navigate(`/messages/${matchId}`);
+      } else {
+        console.error('Match ID not found');
+      }
+    } catch (error) {
+      console.error('Error starting conversation:', error);
+    }
+  };
   
   return (
     <div className="match-modal-overlay">
@@ -55,7 +78,7 @@ const MatchModal: React.FC<MatchModalProps> = ({
               Continue Swiping
             </button>
             <button 
-              onClick={onSendMessage}
+              onClick={handleSendMessage}
               className="message-button"
             >
               Send Message

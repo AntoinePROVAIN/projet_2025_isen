@@ -9,6 +9,7 @@ import { Startup } from '../../entities/startup.entity';
 import { SalesOffer } from '../../entities/sales-offer.entity';
 import { CreateStudentLikeDto } from '../../dto/create-student-like.dto';
 import { CreateStartupLikeDto } from '../../dto/create-startup-like.dto';
+import { MessageService } from '../message/message.service';
 
 @Injectable()
 export class LikeService {
@@ -25,7 +26,8 @@ export class LikeService {
     private startupRepository: Repository<Startup>,
     @InjectRepository(SalesOffer)
     private salesOfferRepository: Repository<SalesOffer>,
-    private dataSource: DataSource
+    private dataSource: DataSource,
+    private readonly messageService: MessageService,
   ) {}
 
   async studentLikesOffer(createStudentLikeDto: CreateStudentLikeDto): Promise<{ like: AimeStudentOffer; match?: Match }> {
@@ -88,13 +90,27 @@ export class LikeService {
           }
         });
 
-        if (!existingMatch) {
+         if (!existingMatch) {
           match = manager.create(Match, {
             date_match: new Date(),
             student: student,
             startup: salesOffer.startup
           });
           match = await manager.save(Match, match);
+          
+          // Load the full match with relations for creating the message
+          const fullMatch = await manager.findOne(Match, {
+            where: { id: match.id },
+            relations: ['student', 'startup', 'student.user', 'startup.user']
+          });
+          
+          if (fullMatch) {
+            await this.messageService.createInitialMessageFromMatchInstance(
+              fullMatch, 
+              savedLike, 
+              manager
+            );
+          }
         }
       }
 
@@ -159,14 +175,28 @@ export class LikeService {
           }
         });
 
-        if (!existingMatch) {
+         if (!existingMatch) {
           const match = manager.create(Match, {
             date_match: new Date(),
             student: student,
             startup: startup
           });
           const savedMatch = await manager.save(Match, match);
-          matches.push(savedMatch);
+          
+          // Load the full match with relations for creating the message
+          const fullMatch = await manager.findOne(Match, {
+            where: { id: savedMatch.id },
+            relations: ['student', 'startup', 'student.user', 'startup.user']
+          });
+          
+          if (fullMatch) {
+            await this.messageService.createInitialMessageFromMatchInstance(
+              fullMatch, 
+              studentLike, 
+              manager
+            );
+            matches.push(savedMatch);
+          }
         }
       }
 

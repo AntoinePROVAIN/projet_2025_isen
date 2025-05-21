@@ -1,5 +1,8 @@
 import { Match } from '../types/types_marketplace';
 
+const API_URL = 'http://localhost:3000';
+
+
 export const checkForMatch = async (studentId: number, startupId: number): Promise<Match | null> => {
   try {
     console.log(`Checking for match between student ${studentId} and startup ${startupId}`);
@@ -22,6 +25,7 @@ export const checkForMatch = async (studentId: number, startupId: number): Promi
         if (text && text.trim().length > 0) {
           const match = JSON.parse(text);
           console.log('Match found:', match);
+          localStorage.setItem("matchId", (match as any).id);
           return match;
         }
       }

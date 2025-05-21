@@ -8,16 +8,19 @@ import { Match } from '../../entities/match.entity';
 import { Student } from '../../entities/student.entity';
 import { Startup } from '../../entities/startup.entity';
 import { SalesOffer } from '../../entities/sales-offer.entity';
+import { MessageModule } from '../message/message.module';
 
 @Module({
   imports: [
+     MessageModule,
     TypeOrmModule.forFeature([
       AimeStudentOffer,
       AimeStartupStudent,
       Match,
       Student,
       Startup,
-      SalesOffer
+      SalesOffer,
+     
     ])
   ],
   controllers: [LikeController],
