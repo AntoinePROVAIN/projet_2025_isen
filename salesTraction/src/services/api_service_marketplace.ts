@@ -78,3 +78,29 @@ export const submitStudentLike = async (
     return false;
   }
 };
+
+export const getStudentLikes = async (studentId: number) => {
+  try {
+    const response = await fetch(`${API_URL}/likes/student/${studentId}`);
+    if (response.ok) {
+      return await response.json();
+    }
+    return [];
+  } catch (error) {
+    console.error('Error fetching student likes:', error);
+    return [];
+  }
+};
+
+export const getStartupLikes = async (startupId: number) => {
+  try {
+    const response = await fetch(`${API_URL}/likes/startup/${startupId}`);
+    if (response.ok) {
+      return await response.json();
+    }
+    return [];
+  } catch (error) {
+    console.error('Error fetching startup likes:', error);
+    return [];
+  }
+};

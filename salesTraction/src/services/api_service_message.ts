@@ -109,23 +109,6 @@ export const getUnreadMessageCount = async (userId: number): Promise<number> => 
   }
 };
 
-// Create the initial system message for a match
-// export const createInitialMessage = async (matchId: number): Promise<Message> => {
-//   try {
-//     const response = await fetch(`${API_URL}/messages/match/${matchId}/initial`, {
-//       method: 'POST',
-//     });
-    
-//     if (!response.ok) {
-//       throw new Error(`Failed to create initial message: ${response.status}`);
-//     }
-    
-//     return await response.json();
-//   } catch (error) {
-//     console.error('Error creating initial message:', error);
-//     throw error;
-//   }
-// };
 
 // Get all matches for a user with latest message
 export const getUserMatches = async (userId: number, userType: 'student' | 'startup'): Promise<Match[]> => {
@@ -142,3 +125,4 @@ export const getUserMatches = async (userId: number, userType: 'student' | 'star
     throw error;
   }
 };
+

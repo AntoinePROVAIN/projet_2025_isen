@@ -3,16 +3,25 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useUserDetection } from '../hooks/userUserDetection';
 import { Match, Student, Startup } from '../types/types_marketplace';
 import '../assets/css/messagerie.css';
+import Header from '../components/Header';
 
 interface Message {
   id: number;
   message_text: string;
   sent_at?: string;
-  date_envoie?: string; // Add this to match backend response
+  date_envoie?: string;
   is_read: boolean;
   match_id: number;
   sender_id: number;
   sender_type: 'student' | 'startup';
+  sender: {
+    id: number;
+    email: string;
+  };
+  receiver: {
+    id: number;
+    email: string;
+  };
 }
 
 interface MatchWithUsers extends Match {
@@ -34,6 +43,12 @@ function MessagePage() {
   const [error, setError] = useState<string | null>(null);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  
+  // Debug logging
+  useEffect(() => {
+    console.log('Current user info:', { userType, userId });
+    console.log('Messages:', messages);
+  }, [userType, userId, messages]);
   
   // Fetch match details
   useEffect(() => {
@@ -112,6 +127,15 @@ function MessagePage() {
             method: 'PATCH'
           });
         }
+        
+        // Update local state to reflect read status
+        setMessages(prevMessages =>
+          prevMessages.map(msg =>
+            unreadMessages.some(unread => unread.id === msg.id)
+              ? { ...msg, is_read: true }
+              : msg
+          )
+        );
       } catch (err) {
         console.error('Error marking messages as read:', err);
       }
@@ -131,6 +155,12 @@ function MessagePage() {
     if (!newMessage.trim() || !matchId || !userId) return;
     
     try {
+      console.log('Sending message with data:', {
+        message_text: newMessage.trim(),
+        match_id: parseInt(matchId),
+        sender_id: userId,
+      });
+
       const response = await fetch(`${API_URL}/messages`, {
         method: 'POST',
         headers: {
@@ -140,17 +170,18 @@ function MessagePage() {
           message_text: newMessage.trim(),
           match_id: parseInt(matchId),
           sender_id: userId,
-          sender_type: userType
         }),
       });
       
       if (!response.ok) {
-        throw new Error('Failed to send message');
+        const errorText = await response.text();
+        console.error('Send message error response:', errorText);
+        throw new Error(`Failed to send message: ${response.status} - ${errorText}`);
       }
       
       // Get the new message from response
       const sentMessage = await response.json();
-      console.log('Message sent:', sentMessage);
+      console.log('Message sent successfully:', sentMessage);
       
       // Update messages state with the new message
       setMessages(prevMessages => [...prevMessages, sentMessage]);
@@ -159,7 +190,11 @@ function MessagePage() {
       setNewMessage('');
     } catch (err) {
       console.error('Error sending message:', err);
-      alert('Failed to send message. Please try again.');
+      if (err instanceof Error) {
+        alert(`Failed to send message: ${err.message}`);
+      } else {
+        alert('Failed to send message: An unknown error occurred.');
+      }
     }
   };
   
@@ -169,7 +204,6 @@ function MessagePage() {
       return '';
     }
     
-    console.log('Formatting date:', dateString);
     try {
       const date = new Date(dateString);
       if (isNaN(date.getTime())) {
@@ -201,32 +235,53 @@ function MessagePage() {
     if (!match) return '/api/placeholder/50/50';
     
     return userType === 'student'
-      ? match.startup?.company_name || '/api/placeholder/50/50' // Adjust if needed
+      ? match.startup?.company_name || '/api/placeholder/50/50'
       : match.student?.profil_picture || '/api/placeholder/50/50';
+  };
+
+  // Function to determine if message was sent by current user
+  const isMessageFromCurrentUser = (message: Message) => {
+    const isFromCurrentUser = message.sender_id === userId;
+    console.log(`Message ${message.id}: sender_id=${message.sender_id}, sender_=${message.sender_type}, userId=${userId}, isFromCurrentUser=${isFromCurrentUser}`);
+    return isFromCurrentUser;
+  };
+
+  // Function to get message sender name for display
+  const getMessageSenderName = (message: Message) => {
+    if (!match) return 'Unknown';
+    
+    if (message.sender_type === 'student') {
+      return `${match.student?.first_name} ${match.student?.last_name}`;
+    } else {
+      return match.startup?.company_name || 'Company';
+    }
   };
 
   if (isLoading && !messages.length) {
     return (
+        <><Header />
       <div className="messaging-container loading">
         <div className="loading-spinner">
           <p>Loading messages...</p>
         </div>
-      </div>
+      </div></>
     );
   }
 
   if (error && !messages.length) {
     return (
+        <><Header />
       <div className="messaging-container error">
         <div className="error-message">
           <p>{error}</p>
           <button className="button" onClick={() => window.location.reload()}>Try Again</button>
         </div>
-      </div>
+      </div></>
     );
   }
 
   return (
+    <><Header />
     <div className="messaging-container">
       <div className="message-header">
         <button className="back-button button" onClick={() => navigate('/matches')}>
@@ -251,19 +306,33 @@ function MessagePage() {
             <p>No messages yet. Start the conversation!</p>
           </div>
         ) : (
-          messages.map((message) => (
-            <div 
-              key={message.id}
-              className={`message ${message.sender_id === userId ? 'sent' : 'received'}`}
-            >
-              <div className="message-content">
-                <p>{message.message_text}</p>
-                <span className="message-time">
-                  {formatDate(message.date_envoie || message.sent_at)}
-                </span>
+          messages.map((message) => {
+            const isFromCurrentUser = isMessageFromCurrentUser(message);
+            const senderName = getMessageSenderName(message);
+            
+            return (
+              <div 
+                key={message.id}
+                className={`message ${isFromCurrentUser ? 'sent' : 'received'}`}
+              >
+                <div className="message-content">
+                  {/* Sender name is now hidden by CSS, but keeping this for debugging */}
+                  {!isFromCurrentUser && (
+                    <div className="message-sender-name">{senderName}</div>
+                  )}
+                  <p>{message.message_text}</p>
+                  <span className="message-time">
+                    {formatDate(message.date_envoie || message.sent_at)}
+                    {isFromCurrentUser && (
+                      <span className={`read-status ${message.is_read ? 'read' : 'unread'}`}>
+                        {message.is_read ? ' ✓✓' : ' ✓'}
+                      </span>
+                    )}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))
+            );
+          })
         )}
         <div ref={messagesEndRef} />
       </div>
@@ -290,7 +359,7 @@ function MessagePage() {
           Send
         </button>
       </form>
-    </div>
+    </div></>
   );
 }
 

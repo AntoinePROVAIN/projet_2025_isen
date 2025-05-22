@@ -145,6 +145,7 @@ async registerStudent(createDto: CreateStudentDto): Promise<Student> {
         throw new BadRequestException('Student profile not found');
       }
 
+      
       // Créer le payload JWT
       const payload = { 
         sub: user.id, 

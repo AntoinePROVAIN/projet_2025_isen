@@ -13,4 +13,5 @@ export class CreateMessageDto {
   @IsNotEmpty()
   @IsInt()
   sender_id: number;
+
 }

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useUserDetection } from '../hooks/userUserDetection';
 import { Match, Student, Startup } from '../types/types_marketplace';
 import '../assets/css/messagerie.css';
+import Header from '../components/Header';
 
 interface MatchWithDetails extends Match {
   student: Student;
@@ -152,27 +153,30 @@ function MatchesListPage() {
   
   if (isLoading) {
     return (
+        <><Header />
       <div className="matches-list-container loading">
         <div className="loading-spinner">
           <p>Loading your matches...</p>
         </div>
-      </div>
+      </div></>
     );
   }
   
   if (error) {
     return (
+        <><Header />
       <div className="matches-list-container error">
         <div className="error-message">
           <p>{error}</p>
           <button onClick={() => window.location.reload()}>Try Again</button>
         </div>
-      </div>
+      </div></>
     );
   }
   
   if (matches.length === 0) {
     return (
+        <><Header />
       <div className="matches-list-container empty">
         <div className="no-matches">
           <h2>No Matches Yet</h2>
@@ -181,11 +185,12 @@ function MatchesListPage() {
             Go to Marketplace
           </Link>
         </div>
-      </div>
+      </div></>
     );
   }
   
   return (
+    <><Header />
     <div className="matches-list-container">
       <h1>Your Matches</h1>
       <div className="matches-list">
@@ -242,7 +247,7 @@ function MatchesListPage() {
       <Link to="/marketplace" className="marketplace-link">
         Back to Marketplace
       </Link>
-    </div>
+    </div></>
   );
 }
 

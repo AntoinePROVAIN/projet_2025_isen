@@ -25,7 +25,7 @@ function Marketplace() {
     setFilters, 
     availableRegions, 
     availableSectors 
-  } = useDataFetching(userType);
+  } = useDataFetching(userType, userId);
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [motivation, setMotivation] = useState('');
@@ -50,10 +50,10 @@ function Marketplace() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Reset current index when filters change
+  // Reset current index when filters change or data is updated
   useEffect(() => {
     setCurrentIndex(0);
-  }, [filters]);
+  }, [filters, offers, students]);
 
   const handleSwipe = (direction: string, item: Offer | Student) => {
     if (direction === 'right') {
@@ -172,9 +172,12 @@ function Marketplace() {
   
   // Show empty state when no more items
   if (!currentItem && !showMatchModal) {
-    return (<><Header />
-              <EmptyState userType={userType} />
-            </>);
+    return (
+      <>
+        <Header />
+        <EmptyState userType={userType} />
+      </>
+    );
   }
 
   // Show match modal
@@ -184,72 +187,71 @@ function Marketplace() {
         matchedItem={matchedItem}
         userType={userType}
         onClose={closeMatchModal}
-        // onSendMessage={() => {
-        //   closeMatchModal();
-        //   // Add navigation logic here
-        // }}
       />
     );
   }
 
-  return (<> <Header /> 
-    <div className="swipe-container">
-      
-      <div className="offers-counter">
-        {currentIndex + 1} / {totalItems}
-      </div>
-      
-      {/* Filters - only show for students */}
-      {userType === 'student' && (
-        <OfferFiltersComponent
-          filters={filters}
-          onFilterChange={handleFilterChange}
-          availableRegions={availableRegions}
-          availableSectors={availableSectors}
-          onToggleFilters={toggleFilters}
-          isVisible={showFilters}
-        />
-      )}
-      
-      {/* Loading overlay for enterprise likes */}
-      {isSubmitting && userType === 'startup' && (
-        <div className="loading-overlay">
-          <div className="loading-spinner">
-            <p>Submitting like...</p>
+  return (
+    <>
+      <Header /> 
+      <div className="swipe-container">
+        
+        <div className="offers-counter">
+          {currentIndex + 1} / {totalItems}
+        </div>
+        
+        {/* Filters - only show for students */}
+        {userType === 'student' && (
+          <OfferFiltersComponent
+            filters={filters}
+            onFilterChange={handleFilterChange}
+            availableRegions={availableRegions}
+            availableSectors={availableSectors}
+            onToggleFilters={toggleFilters}
+            isVisible={showFilters}
+          />
+        )}
+        
+        {/* Loading overlay for enterprise likes */}
+        {isSubmitting && userType === 'startup' && (
+          <div className="loading-overlay">
+            <div className="loading-spinner">
+              <p>Submitting like...</p>
+            </div>
           </div>
-        </div>
-      )}
-      
-      <TinderCard
-        key={currentItem.id}
-        onSwipe={(dir) => handleSwipe(dir, currentItem)}
-        preventSwipe={['up', 'down']}
-        className="tinder-card"
-        swipeRequirementType="position"
-        swipeThreshold={100}
-        onCardLeftScreen={() => {}} // Prevent any default behavior
-      >
-        <div className="card">
-          {userType === 'student' ? (
-            <OfferCard offer={currentItem as Offer} />
-          ) : (
-            <StudentCard student={currentItem as Student} />
-          )}
-        </div>
-      </TinderCard>
+        )}
+        
+        <TinderCard
+          key={currentItem.id}
+          onSwipe={(dir) => handleSwipe(dir, currentItem)}
+          preventSwipe={['up', 'down']}
+          className="tinder-card"
+          swipeRequirementType="position"
+          swipeThreshold={100}
+          onCardLeftScreen={() => {}} // Prevent any default behavior
+        >
+          <div className="card">
+            {userType === 'student' ? (
+              <OfferCard offer={currentItem as Offer} />
+            ) : (
+              <StudentCard student={currentItem as Student} />
+            )}
+          </div>
+        </TinderCard>
 
-      {/* Motivation Modal (Only for Students) */}
-      {showMotivationModal && (
-        <MotivationModal
-          offer={pendingOffer as Offer}
-          motivation={motivation}
-          setMotivation={setMotivation}
-          onCancel={cancelLike}
-          onSubmit={handleStudentLike}
-          isSubmitting={isSubmitting}
-        />
-      )}
-    </div></>
+        {/* Motivation Modal (Only for Students) */}
+        {showMotivationModal && (
+          <MotivationModal
+            offer={pendingOffer as Offer}
+            motivation={motivation}
+            setMotivation={setMotivation}
+            onCancel={cancelLike}
+            onSubmit={handleStudentLike}
+            isSubmitting={isSubmitting}
+          />
+        )}
+      </div>
+    </>
   );
 }
 
