@@ -1,5 +1,5 @@
 import { off } from "i18next";
-import { LikeStudent, LikeOffer } from "../types/types_marketplace";
+import { LikeStudent, LikeOffer, Student } from "../types/types_marketplace";
 
 
 const API_BASE_URL = 'http://127.0.0.1:3000';
@@ -64,6 +64,17 @@ const API_BASE_URL = 'http://127.0.0.1:3000';
         }catch(error) {
             return this.handleError(error, "Erreur lors de la récupération des étudiants qui ont liké cette offre:")
         }
+    }
+
+    static async getOfferStudentMatch(id_offer: number): Promise<Student[]>{
+      try{
+        const OfferStudentMatch = await this.fetchWithErrorHandling<Student[]>(
+          this.buildUrl(`/likes/match/${id_offer}`)
+        );
+        return OfferStudentMatch;
+      }catch(error) {
+        return this.handleError(error, "Erreur lors de la récupération des étudiants qui ont matché cette offre:")
+      }
     }
 
 

@@ -42,8 +42,8 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from "react-i18next";
-import { ChevronRight, Check, X, MapPin, Globe, Heart } from 'lucide-react';
-import { LikeOffer, LikeStudent, Offer } from '../types/types_marketplace';
+import { ChevronRight, Check, X, MapPin, Globe, Heart, MessageSquare } from 'lucide-react';
+import { LikeOffer, LikeStudent, Offer, Student } from '../types/types_marketplace';
 import OfferService from '../services/api_service_offer';
 import Header from '../components/Header';
 import LikeService from '../services/api_service_like';
@@ -63,7 +63,7 @@ const OneOffer = () => {
     const [userId, setUserId] = useState("");
     const [userType, setUserType] = useState("");
 
-    const [students, setStudents] = useState<LikeStudent[]>([]);
+    const [students, setStudents] = useState<Student[]>([]);
 
     useEffect(() => {
         const localToken = localStorage.getItem("token");
@@ -98,12 +98,24 @@ const OneOffer = () => {
   }, [userId,userType]);
 
   useEffect(() =>{
-    // const fetchStudentLike = async () => {
-    //     try{
+    const fetchStudentLike = async () => {
+        try{
+          setLoading(true);
+          const data = await LikeService.getOfferStudentMatch(parseInt(id_offer?id_offer:""));
+          setStudents(data);
+          setError(null);
+        } catch (err) {
+          setError('Erreur lors du chargement des Etudiants ayant matché cette offre. Veuillez réessayer plus tard.');
+          console.error(err);
+        } finally {
+          setLoading(false);
+        }
+    }
 
-    //     }
-    // }
-  })
+
+    fetchStudentLike();
+  },[offer])
+
 
 
   if (loading) {
@@ -216,6 +228,49 @@ const OneOffer = () => {
                 </div>
             </div>
         </div>
+        {userType === "startup" ? (
+        <div className="max-w-4xl mx-auto p-6">
+          <h1 className="text-xl font-bold mb-6">Liste des étudiants ayant matché cette offre</h1>
+          {/* Liste des étudiants */}
+          {students.length === 0 ? (
+            <div className="text-center py-8 text-gray-500">
+              Aucun étudiant trouvé.
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {students.map(student => (
+                <div 
+                  key={student?.id} 
+                  className="grid grid-cols-12 gap-4 p-4 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  {/* Photo de profil */}
+                  <div className="col-span-2 flex items-center justify-center">
+                    {student?.profil_picture ? (
+                      <img 
+                        src={student?.profil_picture} 
+                        alt={`${student?.first_name} ${student?.last_name}`}
+                        className="w-16 h-16 rounded-full object-cover" 
+                      />
+                    ) : (
+                      <div className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center">
+                        {/* <User className="h-8 w-8 text-gray-400" /> */}
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Nom */}
+                  <div className="col-span-5 flex items-center font-medium">
+                    {student?.last_name}
+                  </div>
+                  
+                  {/* Prénom */}
+                  <div className="col-span-5 flex items-center">
+                    {student?.first_name}
+                  </div>
+                </div>
+              ))}
+            </div>)}
+          </div>): <></>}
     </div> 
              
     </>
