@@ -34,6 +34,12 @@ export class LikeController {
     return this.likeService.getOfferLikes(+offerId);
   }
 
+  @Get('match/:offerId')
+    getOfferLikesWithMatch(@Param('offerId') offerId: string) {
+    return this.likeService.getOfferLikesWithMatch(+offerId);
+  }
+
+
   @Delete('student/:offerId/:studentId')
   removeStudentLike(@Param('offerId') offerId: string, @Param('studentId') studentId: string) {
     return this.likeService.removeStudentLike(+offerId, +studentId);

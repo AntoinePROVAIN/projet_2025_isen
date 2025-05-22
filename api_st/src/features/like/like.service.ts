@@ -225,6 +225,16 @@ export class LikeService {
     });
   }
 
+  async getOfferLikesWithMatch(offerId: number): Promise<Student[]> {
+    return this.studentLikeRepository
+      .createQueryBuilder('aime_student_offer')
+      .innerJoin(Match, 'm','aime_student_offer.id_student = m.id_student')
+      .innerJoin(Student, 's', 'aime_student_offer.id_student = s.id')
+      .select('s.*')
+      .where('aime_student_offer.id = :offerId', {offerId})
+      .getRawMany();
+  } 
+
   async removeStudentLike(offerId: number, studentId: number): Promise<void> {
     const like = await this.studentLikeRepository.findOne({
       where: { id: offerId, id_student: studentId }
