@@ -82,6 +82,7 @@ textarea {
 .button:disabled {
   background-color: #93c5fd;
   cursor: not-allowed;
+  height: 100%;
 }
 
 .success-message {
