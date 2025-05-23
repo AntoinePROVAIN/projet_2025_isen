@@ -35,9 +35,7 @@ const Header: React.FC = () => {
     useEffect(() => {
         if(token && userId && userType){
             setIsConnected(true);
-            console.log("connecté : "+isConnected);
         }else{
-            console.log("pas connecté : "+isConnected); 
         }
     }, [token, userId, userType]);
 
@@ -59,10 +57,9 @@ const Header: React.FC = () => {
                     {!isMenuOpen ? <Menu size={24} /> : <X size={24}/>}
                     
                 </button>
-                <h1 className="text-white text-4xl">{t('SalesTraction')}</h1>
+                <h1 className="text-white text-4xl">{t('navigation.SalesTraction')}</h1>
                 <div className="w-8"></div>
             </div>
-            {/* {isMenuOpen && ( */}
                 <div className={`fixed bg-white left-0 top-32 w-full lg:w-80 h-screen flex flex-col z-50 transform transition-transform duration-300 ease-in-out 
                 ${ isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 {!isConnected ? (
@@ -71,13 +68,13 @@ const Header: React.FC = () => {
                             <div className="px-4">
                                 <ul className="space-y-10">
                                 <li>
-                                    <a href="/#description_speech" onClick={() => { toggleMenu(); }} className="block px-2 py-1">{t('whoami')}</a>
+                                    <a href="/#description_speech" onClick={() => { toggleMenu(); }} className="block px-2 py-1">{t('navigation.whoami')}</a>
                                 </li>
                                 <li className="li-hidden">
-                                    <a href="/" className="block px-2 py-1">{t('opinion')}</a>
+                                    <a href="/" className="block px-2 py-1">{t('navigation.opinion')}</a>
                                 </li>
                                 <li className="li-hidden">
-                                    <a href="/" className="block px-2 py-1">{t('faq')}</a>
+                                    <a href="/" className="block px-2 py-1">{t('navigation.faq')}</a>
                                 </li>
                                 </ul>
                             </div>
@@ -88,26 +85,26 @@ const Header: React.FC = () => {
                             <Button onClick={()=>{
                                     toggleMenu();
                                     nav("/connection/student");
-                                }} children={t('student')} />
+                                }} children={t('landingpage.student')} />
                             <Button onClick={()=>{
                                     toggleMenu();
                                     nav("/connection/startup");
-                                }} children={t('startup')} />
+                                }} children={t('landingpage.startup')} />
                         </div>
                     </>) : (
                         <>
                             <div className="py-10 px-16 space-y-6">
                                 <a href="/marketplace" className="block px-2 py-1">
-                                    {t('exploreOffer')}
+                                    {t('navigation.exploreOffer')}
                                 </a>
                                 <a href="/offers" className="block px-2 py-1">
-                                    {t('myOffer')}
+                                    {t('navigation.myOffer')}
                                 </a>
                                 <a href="/matches" className="block px-2 py-1">
-                                    {t('messages')}
+                                    {t('navigation.messages')}
                                 </a>
                                 <a href="/profile" className="block px-2 py-1">
-                                    {t('profil')}
+                                    {t('navigation.profil')}
                                 </a>
                             </div>
                             <span className="my-10"></span>
@@ -120,14 +117,13 @@ const Header: React.FC = () => {
                                     setIsConnected(false);
                                     toggleMenu();
                                     nav('/');
-                                }} children={t('logout')}
+                                }} children={t('navigation.logout')}
                                 className=""/>
                             </div>
                         </>
                     )}
 
             </div>
-            {/* )} */}
         </header>
     );
 };

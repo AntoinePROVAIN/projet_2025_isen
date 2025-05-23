@@ -26,15 +26,15 @@ function LandingPage() {
       <Header />
       <div className=''>
         
-        <h1 className='police my-12 text-3xl font-bold italic text-center'>{t('meetCommercial')}</h1>
+        <h1 className='police my-12 text-3xl font-bold italic text-center'>{t('landingpage.meetCommercial')}</h1>
         <div className='bg-black mr-4 ml-4 rounded h-80'>
-            <img src="/start.jpg" className="w-full h-full object-cover" alt="image de présentation"/>
+            <img src="/start.jpg" className="w-full h-full object-cover" alt={t('landingpage.altImagePres')}/>
         </div>
         <h2 className='slogan text-xl text-gray-800 mb-4 mt-4 ml-4 mr-4 text-center'>{t('slogan')}</h2>
         <span className='my-10'></span>
         <div className="space-y-10 py-10 px-14 flex flex-col justify-center">
-            <Button onClick={()=>nav("/connection/student")} children={t('student')} />
-            <Button onClick={()=>nav("/connection/startup")} children={t('startup')} />
+            <Button onClick={()=>nav("/connection/student")} children={t('landingpage.student')} />
+            <Button onClick={()=>nav("/connection/startup")} children={t('landingpage.startup')} />
         </div>
 
         <div id='description_speech' className='justify-center py-16 px-5 bg-gray-200  shadow-lg border border-gray-200 rounded-2xl p-6 max-w-4xl mx-auto mt-10'>
@@ -45,7 +45,7 @@ function LandingPage() {
             </div>
               <img className="rounded" src="/match.png" alt="match" />
             <p className="slogan text-gray-600 text-lg mt-4 leading-relaxed text-center">
-               {t('presentationSpeech')}</p>
+               {t('landingpage.presentationSpeech')}</p>
         </div>
       </div>
       </>

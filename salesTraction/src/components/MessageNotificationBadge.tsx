@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUserDetection } from '../hooks/userUserDetection';
 import { getUnreadMessageCount } from '../services/api_service_message';
+import { useTranslation } from 'react-i18next';
 
 interface MessageNotificationBadgeProps {
   className?: string;
 }
 
 const MessageNotificationBadge: React.FC<MessageNotificationBadgeProps> = ({ className = '' }) => {
+  const { t } = useTranslation();
   const { userId, userType } = useUserDetection();
   const [unreadCount, setUnreadCount] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -20,7 +22,7 @@ const MessageNotificationBadge: React.FC<MessageNotificationBadgeProps> = ({ cla
         const count = await getUnreadMessageCount(userId);
         setUnreadCount(count);
       } catch (error) {
-        console.error('Error fetching unread count:', error);
+        console.error(t('errors.ERRORFetchUnread'), error);
       } finally {
         setIsLoading(false);
       }

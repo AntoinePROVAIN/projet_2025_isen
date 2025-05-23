@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useUserDetection } from '../hooks/userUserDetection';
 import { Match, Student, Startup } from '../types/types_marketplace';
 import '../assets/css/messagerie.css';
+import { useTranslation } from 'react-i18next';
 import Header from '../components/Header';
 
 interface MatchWithDetails extends Match {
@@ -29,6 +30,7 @@ interface MatchWithDetails extends Match {
 const API_URL = 'http://localhost:3000';
 
 function MatchesListPage() {
+  const { t } = useTranslation();
   const { userType, userId } = useUserDetection();
   const [matches, setMatches] = useState<MatchWithDetails[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -45,7 +47,7 @@ function MatchesListPage() {
         const matchesResponse = await fetch(`${API_URL}/matches/${userType}/${userId}`);
         
         if (!matchesResponse.ok) {
-          throw new Error('Failed to fetch matches');
+          throw new Error(t('matches.failedToFetch'));
         }
         
         const matchesData = await matchesResponse.json();
@@ -95,7 +97,7 @@ function MatchesListPage() {
         setError(null);
       } catch (err) {
         console.error('Error fetching matches:', err);
-        setError('Could not load your matches. Please try again later.');
+        setError(t('matches.errorMessage'));
       } finally {
         setIsLoading(false);
       }
@@ -156,7 +158,7 @@ function MatchesListPage() {
         <><Header />
       <div className="matches-list-container loading">
         <div className="loading-spinner">
-          <p>Loading your matches...</p>
+          <p>{t('matches.loading')}</p>
         </div>
       </div></>
     );
@@ -168,7 +170,7 @@ function MatchesListPage() {
       <div className="matches-list-container error">
         <div className="error-message">
           <p>{error}</p>
-          <button onClick={() => window.location.reload()}>Try Again</button>
+          <button onClick={() => window.location.reload()}>{t('matches.tryAgain')}</button>
         </div>
       </div></>
     );
@@ -179,20 +181,20 @@ function MatchesListPage() {
         <><Header />
       <div className="matches-list-container empty">
         <div className="no-matches">
-          <h2>No Matches Yet</h2>
-          <p>Start swiping to find some matches!</p>
+          <h2>{t('matches.noMatchesTitle')}</h2>
+          <p>{t('matches.noMatchesDescription')}</p>
           <Link to="/marketplace" className="marketplace-link">
-            Go to Marketplace
+            {t('matches.goToMarketplace')}
           </Link>
         </div>
       </div></>
     );
   }
   
-  return (
-    <><Header />
+  return (<>
+    <Header/>
     <div className="matches-list-container">
-      <h1>Your Matches</h1>
+      <h1>{t('matches.title')}</h1>
       <div className="matches-list">
         {matches.map((match) => {
           // Determine who the other party is based on user type
@@ -212,7 +214,7 @@ function MatchesListPage() {
           // Handle different message text fields from backend
           const messagePreview = match.lastMessage
             ? truncateText(match.lastMessage.message_text || match.lastMessage.text || '')
-            : 'No messages yet';
+            : t('matches.noMessagesYet');
           
           return (
             <Link 
@@ -245,9 +247,10 @@ function MatchesListPage() {
         })}
       </div>
       <Link to="/marketplace" className="marketplace-link">
-        Back to Marketplace
+        {t('matches.backToMarketplace')}
       </Link>
-    </div></>
+    </div>
+    </>
   );
 }
 

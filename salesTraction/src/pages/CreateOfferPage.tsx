@@ -2,6 +2,7 @@ import React, { useState, FormEvent, useEffect } from 'react';
 import '../assets/css/CreateOfferPage.css';
 import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface CreateOfferFormData {
   title: string;
@@ -17,6 +18,7 @@ interface CreateOfferFormData {
 }
 
 const CreateOfferPage: React.FC = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<CreateOfferFormData>({
     title: '',
     description: '',
@@ -117,7 +119,7 @@ const CreateOfferPage: React.FC = () => {
       nav('/offers');
     } catch (err) {
       console.error('Error creating offer:', err);
-      setError('Failed to create offer. Please try again.');
+      setError(t('offerCreation.error'));
     } finally {
       setLoading(false);
     }
@@ -131,7 +133,7 @@ const CreateOfferPage: React.FC = () => {
       
       {success && (
         <div className="success-message">
-          Offer created successfully!
+          {t('offerCreation.success')}
         </div>
       )}
       
@@ -143,8 +145,8 @@ const CreateOfferPage: React.FC = () => {
       
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="title">Create New Offer</label><br />
-          <label htmlFor="title">Title*</label>
+          <label htmlFor="title">{t('offerCreation.pageTitle')}</label><br />
+          <label htmlFor="title">{t('offerCreation.title')}*</label>
           <input
             type="text"
             id="title"
@@ -153,11 +155,12 @@ const CreateOfferPage: React.FC = () => {
             onChange={handleChange}
             required
             maxLength={255}
+            placeholder={t('offerCreation.titlePlaceholder')}
           />
         </div>
         
         <div className="form-group">
-          <label htmlFor="description">Description*</label>
+          <label htmlFor="description">{t('offerCreation.description')}*</label>
           <textarea
             id="description"
             name="description"
@@ -166,12 +169,13 @@ const CreateOfferPage: React.FC = () => {
             required
             maxLength={2000}
             rows={5}
+            placeholder={t('offerCreation.descriptionPlaceholder')}
           />
         </div>
         
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="price">Price (€)*</label>
+            <label htmlFor="price">{t('offerCreation.price')} (€)*</label>
             <input
               type="number"
               id="price"
@@ -186,7 +190,7 @@ const CreateOfferPage: React.FC = () => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="commission">Commission (%)*</label>
+            <label htmlFor="commission">{t('offerCreation.commission')} (%)*</label>
             <input
               type="number"
               id="commission"
@@ -202,7 +206,7 @@ const CreateOfferPage: React.FC = () => {
         </div>
         
         <div className="form-group">
-          <label htmlFor="target_customer">Target Customer*</label>
+          <label htmlFor="target_customer">{t('offerCreation.targetCustomer')}*</label>
           <input
             type="text"
             id="target_customer"
@@ -215,7 +219,7 @@ const CreateOfferPage: React.FC = () => {
         </div>
         
         <div className="form-group">
-          <label htmlFor="region">Region*</label>
+          <label htmlFor="region">{t('offerCreation.region')}*</label>
           <input
             type="text"
             id="region"
@@ -228,7 +232,7 @@ const CreateOfferPage: React.FC = () => {
         </div>
         
         <div className="form-group">
-          <label htmlFor="product_image">Product Image URL*</label>
+          <label htmlFor="product_image">{t('offerCreation.image')}*</label>
           <input
             type="text"
             id="product_image"
@@ -248,13 +252,13 @@ const CreateOfferPage: React.FC = () => {
               checked={formData.remote_or_physical}
               onChange={handleChange}
             />
-            Remote Service (unchecked = Physical)
+            {t('offerCreation.remote')}
           </label>
         </div>
         
         <div className="form-actions">
           <button className="button" type="submit" disabled={loading}>
-            {loading ? 'Creating...' : 'Create Offer'}
+            {loading ? t('offerCreation.creating') : t('offerCreation.submit')}
           </button>
         </div>
       </form>

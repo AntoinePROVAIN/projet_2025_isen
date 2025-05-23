@@ -13,10 +13,11 @@ import EmptyState from '../components/EmptyState';
 import { Offer, Student, Match, UserType, OfferFilters } from '../types/types_marketplace';
 import '../assets/css/marketplace_student.css';
 import Header from '../components/Header';
+import { useTranslation } from 'react-i18next';
 
 function Marketplace() {
   const { userType, userId } = useUserDetection();
-
+  const { t, i18n } = useTranslation();
   const { 
     offers, 
     students, 
@@ -90,8 +91,8 @@ function Marketplace() {
         setCurrentIndex((prev) => prev + 1);
       }
     } catch (error) {
-      console.error('Error submitting like:', error);
-      alert('Failed to submit your like. Please try again.');
+      console.error(t("errors.ERRORSubmitLike"), error);
+      alert(t("errors.ERRORSubmitLikeAlert"));
     } finally {
       setIsSubmitting(false);
     }
@@ -99,7 +100,7 @@ function Marketplace() {
 
   const handleStudentLike = async () => {
     if (!pendingOffer || !motivation.trim()) {
-      alert('Please write a motivation before submitting your like!');
+      alert(t("messages.writeMotivation"));
       return;
     }
 
@@ -129,8 +130,8 @@ function Marketplace() {
         setPendingOffer(null);
       }
     } catch (error) {
-      console.error('Error submitting like:', error);
-      alert('Failed to submit your like. Please try again.');
+      console.error(t("ERRORSubmitLike"), error);
+      alert(t("ERRORSubmitLikeAlert"));
     } finally {
       setIsSubmitting(false);
     }
@@ -157,12 +158,12 @@ function Marketplace() {
 
   // Don't render anything until we have user info
   if (!userId) {
-    return <LoadingState message="Detecting user information..." />;
+    return <LoadingState message={t('messages.detectingUser')} />;
   }
 
   // Show loading state
   if (isLoading) {
-    return <LoadingState message={`Loading ${userType === 'student' ? 'offers' : 'students'}...`} />;
+    return <LoadingState message={t('messages.loading')+` ${userType === 'student' ? t('offers.offer') : t('profile.students')}...`} />;
   }
 
   // Get current item based on user type
@@ -191,53 +192,51 @@ function Marketplace() {
     );
   }
 
-  return (
-    <>
-      <Header /> 
-      <div className="swipe-container">
-        
-        <div className="offers-counter">
-          {currentIndex + 1} / {totalItems}
+  return (<> <Header /> 
+    <div className="swipe-container">
+      
+      <div className="offers-counter">
+        {currentIndex + 1} / {totalItems}
+      </div>
+      
+      {/* Filters - only show for students */}
+      {userType === 'student' && (
+        <OfferFiltersComponent
+          filters={filters}
+          onFilterChange={handleFilterChange}
+          availableRegions={availableRegions}
+          availableSectors={availableSectors}
+          onToggleFilters={toggleFilters}
+          isVisible={showFilters}
+        />
+      )}
+      
+      {/* Loading overlay for enterprise likes */}
+      {isSubmitting && userType === 'startup' && (
+        <div className="loading-overlay">
+          <div className="loading-spinner">
+            <p>{t('actions.submitLike')}</p>
+          </div>
         </div>
-        
-        {/* Filters - only show for students */}
-        {userType === 'student' && (
-          <OfferFiltersComponent
-            filters={filters}
-            onFilterChange={handleFilterChange}
-            availableRegions={availableRegions}
-            availableSectors={availableSectors}
-            onToggleFilters={toggleFilters}
-            isVisible={showFilters}
-          />
-        )}
-        
-        {/* Loading overlay for enterprise likes */}
-        {isSubmitting && userType === 'startup' && (
-          <div className="loading-overlay">
-            <div className="loading-spinner">
-              <p>Submitting like...</p>
-            </div>
-          </div>
-        )}
-        
-        <TinderCard
-          key={currentItem.id}
-          onSwipe={(dir) => handleSwipe(dir, currentItem)}
-          preventSwipe={['up', 'down']}
-          className="tinder-card"
-          swipeRequirementType="position"
-          swipeThreshold={100}
-          onCardLeftScreen={() => {}} // Prevent any default behavior
-        >
-          <div className="card">
-            {userType === 'student' ? (
-              <OfferCard offer={currentItem as Offer} />
-            ) : (
-              <StudentCard student={currentItem as Student} />
-            )}
-          </div>
-        </TinderCard>
+      )}
+      
+      <TinderCard
+        key={currentItem.id}
+        onSwipe={(dir) => handleSwipe(dir, currentItem)}
+        preventSwipe={['up', 'down']}
+        className="tinder-card"
+        swipeRequirementType="position"
+        swipeThreshold={100}
+        onCardLeftScreen={() => {}} // Prevent any default behavior
+      >
+        <div className="card">
+          {userType === 'student' ? (
+            <OfferCard offer={currentItem as Offer} />
+          ) : (
+            <StudentCard student={currentItem as Student} />
+          )}
+        </div>
+      </TinderCard>
 
         {/* Motivation Modal (Only for Students) */}
         {showMotivationModal && (

@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import Profile from '../components/Profil';
+import { useTranslation } from 'react-i18next';
 
 function ProfilePage() {
+  const  {t} = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -20,7 +22,7 @@ function ProfilePage() {
   }, []);
 
   if (isLoading) {
-    return <div>Loading ...</div>;
+    return <div>t{('messages.loading')}...</div>;
   }
 
   return (

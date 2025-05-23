@@ -1,11 +1,13 @@
 import React from 'react';
 import { Offer } from '../types/types_marketplace';
+import { useTranslation } from 'react-i18next';
 
 interface OfferCardProps {
   offer: Offer;
 }
 
 const OfferCard: React.FC<OfferCardProps> = ({ offer }) => {
+  const {t, i18n} = useTranslation();
   return (
     <>
       <img 
@@ -57,8 +59,8 @@ const OfferCard: React.FC<OfferCardProps> = ({ offer }) => {
           </div>
         )} */}
         <div className="swipe-hint">
-          <span className="hint-left">👈 Skip</span>
-          <span className="hint-right">Like 👉</span>
+          <span className="hint-left">👈 {t('skip')}</span>
+          <span className="hint-right">{t('like')} 👉</span>
         </div>
       </div>
     </>

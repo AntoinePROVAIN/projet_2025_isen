@@ -26,7 +26,7 @@ const LikeItem: React.FC<LikeProps> = ({ like, userId }) => {
                 const matchResult = await checkForMatch(userId, like.salesOffer?.startup?.id ?? 0);
                 setIsMatch(matchResult);
             } catch (error) {
-                console.error("Erreur lors de la vérification de la correspondance:", error);
+                console.error(t('errors.ERRORCheckMatch'), error);
                 
             }
         }
@@ -62,22 +62,22 @@ const LikeItem: React.FC<LikeProps> = ({ like, userId }) => {
               <div className="flex justify-between items-center mb-2">
                 <span className="font-bold text-lg">{like.salesOffer?.price} €</span>
                 <span className="text-sm text-gray-500">
-                  Commission: {like.salesOffer?.commission} €
+                  {t('offers.commission')}: {like.salesOffer?.commission} €
                 </span>
               </div>
               <div className="text-sm text-gray-500 mb-2">
                 <span className="mr-2">{like.salesOffer?.region}</span>
-                <span>{like.salesOffer?.remote_or_physical ? 'Distanciel' : 'Présentiel'}</span>
+                <span>{like.salesOffer?.remote_or_physical ? t('offers.distance') : t('offers.physical')}</span>
               </div>
               {like.salesOffer?.startup && (
                 <div className="mt-3 pt-3 border-t border-gray-200">
-                  <p className="font-medium">{like.salesOffer?.startup.company_name || 'Entreprise'}</p>
+                  <p className="font-medium">{like.salesOffer?.startup.company_name || t('offers.company')}</p>
                   <p className="text-sm text-gray-600 truncate">{like.salesOffer?.startup.secteur || ''}</p>
                 </div>
               )}
               <div className="mt-4">
                 <Button className='w-full'
-                  children="Voir les détails" onClick={()=>nav(`/offers/${like.salesOffer?.id}`)}/>
+                  children={t('offers.seeDetails')} onClick={()=>nav(`/offers/${like.salesOffer?.id}`)}/>
               </div>
             </div>
           </div></>);

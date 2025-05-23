@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { OfferFilters } from '../types/types_marketplace';
+import { useTranslation } from 'react-i18next';
 
 interface OfferFiltersProps {
   filters: OfferFilters;
@@ -18,6 +19,8 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
   onToggleFilters,
   isVisible
 }) => {
+  const { t, i18n } = useTranslation();
+
   // Local state for filters to enable reset
   const [localFilters, setLocalFilters] = useState<OfferFilters>(filters);
 
@@ -45,7 +48,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
         onClick={onToggleFilters}
         id='show-filters'
       >
-        Show Filters
+        {t('showFilters')}
       </button>
     );
   }
@@ -53,7 +56,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
   return (
     <div className="offer-filters">
       <div className="filter-header">
-        <h3>Filter Offers</h3>
+        <h3>{t('filterOffers')}</h3>
         <button 
           className="filter-close-button"
           onClick={onToggleFilters}
@@ -63,12 +66,12 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
       </div>
 
       <div className="filter-section">
-        <label>Region</label>
+        <label>{t('region')}</label>
         <select
           value={localFilters.region || ''}
           onChange={(e) => handleFilterChange('region', e.target.value || undefined)}
         >
-          <option value="">All Regions</option>
+          <option value="">{t('allRegions')}</option>
           {availableRegions.map((region) => (
             <option key={region} value={region}>{region}</option>
           ))}
@@ -76,12 +79,12 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
       </div>
 
       <div className="filter-section">
-        <label>Sector</label>
+        <label>{t('sector')}</label>
         <select
           value={localFilters.secteur || ''}
           onChange={(e) => handleFilterChange('secteur', e.target.value || undefined)}
         >
-          <option value="">All Sectors</option>
+          <option value="">{t('allSectors')}</option>
           {availableSectors.map((sector) => (
             <option key={sector} value={sector}>{sector}</option>
           ))}
@@ -89,7 +92,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
       </div>
 
       <div className="filter-section">
-        <label>Commission Range (%)</label>
+        <label>{t('commissionRange')}</label>
         <div className="range-inputs">
           <input
             type="number"
@@ -99,7 +102,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
             value={localFilters.minCommission || ''}
             onChange={(e) => handleFilterChange('minCommission', e.target.value ? Number(e.target.value) : undefined)}
           />
-          <span>to</span>
+          <span>{t('to')}</span>
           <input
             type="number"
             min="0"
@@ -112,7 +115,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
       </div>
 
       <div className="filter-section">
-        <label>Work Type</label>
+        <label>{t('workType')}</label>
         <div className="radio-group">
           <label>
             <input
@@ -121,7 +124,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
               checked={localFilters.remote_or_physical === null || localFilters.remote_or_physical === undefined}
               onChange={() => handleFilterChange('remote_or_physical', null)}
             />
-            All
+            {t('all')}
           </label>
           <label>
             <input
@@ -130,7 +133,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
               checked={localFilters.remote_or_physical === true}
               onChange={() => handleFilterChange('remote_or_physical', true)}
             />
-            Remote
+            {t('remote')}
           </label>
           <label>
             <input
@@ -139,7 +142,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
               checked={localFilters.remote_or_physical === false}
               onChange={() => handleFilterChange('remote_or_physical', false)}
             />
-            On-site
+            {t('onSite')}
           </label>
         </div>
       </div>
@@ -149,7 +152,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
           className="reset-filters-button"
           onClick={handleResetFilters}
         >
-          Reset Filters
+          {t('resetFilters')}
         </button>
       </div>
     </div>

@@ -3,9 +3,10 @@ import Header from "../components/Header"
 import { useNavigate } from "react-router-dom";
 import "../assets/css/inscription_etudiant.css"
 import { register_student } from "../requetes/inscription";
+import { useTranslation } from "react-i18next";
 
 function InscriptionEtudiant() {
-
+  const { t } = useTranslation();
   const nav = useNavigate();
 
   // const [name, setName] = useState("");
@@ -36,12 +37,12 @@ function InscriptionEtudiant() {
     const end = new Date(ending_date);
 
     if (languages.length === 0) {
-      setError("The language is empty")
+      setError(t("registration.student.languageEmptyError"))
       return;
     }
 
     if (start >= end) {
-      setError("The starting date have to be below the ending date");
+      setError(t("registration.student.dateRangeError"));
       return;
     }
 
@@ -74,62 +75,60 @@ function InscriptionEtudiant() {
         <div className="authComponent_container w-full bg-white shadow-md rounded-lg p-6 mt-8">
           <div className='authComponent_content'>
             <form onSubmit={handleSubmit}>
-              <label className="labels">Email</label>
+              <label className="labels">{t("registration.student.email")}</label>
               <input type='email' id="email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} className='placeholder-gray-400 auth_input w-full mb-3 p-1 h-10 border rounded' placeholder="people@gmail.com" required/>
-              <label className="labels">Birth Date</label>
+              <label className="labels">{t("registration.student.birthDate")}</label>
               <input type='date' id="birth_date" name='birth_date' value={birth_date} onChange={(e) => setBirthDate(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
-              <label className="labels">First Name</label>
+              <label className="labels">{t("registration.student.firstName")}</label>
               <input type='text' id="fn" name='fn' value={first_name} onChange={(e) => setFirstName(e.target.value)} className='placeholder-gray-400 auth_input w-full mb-3 p-1 h-10 border rounded' placeholder="Jean" required/>
-              <label className="labels">Last Name</label>
+              <label className="labels">{t("registration.student.lastName")}</label>
               <input type='text' id="lname" name='lname' value={last_name} onChange={(e) => setLastName(e.target.value)} className='placeholder-gray-400 auth_input w-full mb-3 p-1 h-10 border rounded' placeholder="Moulin" required/>
-              <label className="labels">linkedin_url</label>
+              <label className="labels">{t("registration.student.linkedinUrl")}</label>
               <input type='url' id="linkedin_url" name='linkedin_url' value={linkedin_url} onChange={(e) => setLinkedinUrl(e.target.value)} className='placeholder-gray-400 auth_input w-full mb-3 p-1 h-10 border rounded' placeholder="http://linkedin.com" required/>
-              <label className="labels">University</label>
+              <label className="labels">{t("registration.student.university")}</label>
               <input type='text' id="university" name='university' value={university} onChange={(e) => setUniversity(e.target.value)} className='placeholder-gray-400 auth_input w-full mb-3 p-1 h-10 border rounded' placeholder="ISEN" required/>
 
-              <label className="labels">Sector preferences</label>
+              <label className="labels">{t("registration.student.sectorPreferences")}</label>
               <div className="flex items-stretch gap-2 mb-4">
                 <input type="text" id="sector_preference" name="sector_preference" value={secteurInput} onChange={(e) => setSecteurInput(e.target.value)} className="placeholder-gray-400 border rounded px-2 w-[90%] h-10 focus:outline-none" placeholder="IT"/>
-                <button type="button" className="button_plus bg-cyan-400 text-white rounded w-[10%] min-w-[40px] h-10 flex items-center justify-center" onClick={() => {const trimmed = secteurInput.trim();if (trimmed && !sectorPreferences.includes(trimmed)) {setSectorPreferences([...sectorPreferences, trimmed]);setSecteurInput("");}}}>+</button>
+                <button type="button" className="button_plus bg-cyan-400 text-white rounded w-[10%] min-w-[40px] h-10 flex items-center justify-center" onClick={() => {const trimmed = secteurInput.trim();if (trimmed && !sectorPreferences.includes(trimmed)) {setSectorPreferences([...sectorPreferences, trimmed]);setSecteurInput("");}}}>{t("registration.student.addButton")}</button>
               </div>
 
               <div className="flex flex-wrap gap-2 mb-4">
                 {sectorPreferences.map((pref, index) => (
                   <div key={index} className="flex items-center bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-sm shadow-sm">
                     <span>{pref}</span>
-                    <button type="button" onClick={() => setSectorPreferences(sectorPreferences.filter((_, i) => i !== index))} className="ml-2 text-cyan-800 hover:text-red-500 font-bold focus:outline-none">✕</button>
+                    <button type="button" onClick={() => setSectorPreferences(sectorPreferences.filter((_, i) => i !== index))} className="ml-2 text-cyan-800 hover:text-red-500 font-bold focus:outline-none">{t("registration.student.removeButton")}</button>
                   </div>
                 ))}
               </div>
 
-              <label className="labels mb-2">Speaking languages</label>
+              <label className="labels mb-2">{t("registration.student.speakingLanguages")}</label>
               <div className="flex items-stretch gap-2 mb-4">
-                <input type="text" id="lang" name="lang" value={languageInput} onChange={(e) => setLanguageInput(e.target.value)} className="placeholder-gray-400 border rounded px-2 w-[90%] h-10 focus:outline-none" placeholder="English"/>
-                <button type="button" onClick={() => {const trimmed = languageInput.trim(); if (trimmed && !languages.includes(trimmed)) {setLanguages([...languages, trimmed]);setLanguageInput("");}}}className="button_plus bg-cyan-400 text-white rounded w-[10%] min-w-[40px] h-10 flex items-center justify-center">+</button>
+                <input type="text" id="lang" name="lang" value={languageInput} onChange={(e) => setLanguageInput(e.target.value)} className="border rounded px-2 w-[90%] h-10 focus:outline-none"/>
+                <button type="button" onClick={() => {const trimmed = languageInput.trim(); if (trimmed && !languages.includes(trimmed)) {setLanguages([...languages, trimmed]);setLanguageInput("");}}}className="button_plus bg-cyan-400 text-white rounded w-[10%] min-w-[40px] h-10 flex items-center justify-center">{t("registration.student.addButton")}</button>
               </div>
 
               <div className="flex flex-wrap gap-2 mb-4">
                 {languages.map((pref, index) => (
                   <div key={index} className="flex items-center bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-sm shadow-sm">
                     <span>{pref}</span>
-                    <button type="button" onClick={() => setLanguages(languages.filter((_, i) => i !== index))} className="ml-2 text-cyan-800 hover:text-red-500 font-bold focus:outline-none">✕</button>
+                    <button type="button" onClick={() => setLanguages(languages.filter((_, i) => i !== index))} className="ml-2 text-cyan-800 hover:text-red-500 font-bold focus:outline-none">{t("registration.student.removeButton")}</button>
                   </div>
                 ))}
               </div>
 
-              <label className="labels">Availability</label>
+              <label className="labels">{t("registration.student.availability")}</label>
               <input type='date' id='start' name='start' value={starting_date} onChange={(e) => setStartingDate(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
               <input type='date' id='end' name='end' value={ending_date} onChange={(e) => setEndingDate(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
               
               <label className="labels">Picture</label>
               <input type="url" onChange={(e) => {setProfilPicture(e.target.value);}} className="placeholder-gray-400 auth_input w-full p-2 text-sm border rounded file:mr-3 file:py-2 file:px-4 file:border-0 file:rounded file:bg-blue-500 file:text-white file:text-sm" placeholder="http://image" required/>
-              
-              {/* <input type="url" accept="image/png, image/jpeg, image/jpg" id="img" name="img" onChange={(e: React.ChangeEvent<HTMLInputElement>) => {if (e.target.files && e.target.files[0]) {setProfilPicture(e.target.files[0]);}}} className="auth_input w-full p-2 text-sm border rounded file:mr-3 file:py-2 file:px-4 file:border-0 file:rounded file:bg-blue-500 file:text-white file:text-sm" required/> */}
-              <label className="labels">Password</label>
+              <label className="labels">{t("registration.student.password")}</label>
               <input type='password' id='pwd' name='pwd' value={password} onChange={(e) => setPassword(e.target.value)} className='placeholder-gray-400 auth_input w-full mb-3 p-1 h-10 border rounded' placeholder="password123" required/>
               <div className='auth_buttons flex flex-col md:flex-row justify-between gap-4'>
-                  <input type='submit' value="Inscription" className='auth_button w-full md:w-1/2 py-2 bg-blue-500 text-white rounded'/>
-                  <input type='button' value="Back" className='auth_button w-full md:w-1/2 py-2 bg-gray-500 text-white rounded' onClick={handleRetour}/>
+                  <input type='submit' value={t("registration.student.register")} className='auth_button w-full md:w-1/2 py-2 bg-blue-500 text-white rounded'/>
+                  <input type='button' value={t("registration.student.cancel")} className='auth_button w-full md:w-1/2 py-2 bg-gray-500 text-white rounded' onClick={handleRetour}/>
               </div>
             </form>
             {error && <p className="text-red-500 text-sm">{error}</p>}

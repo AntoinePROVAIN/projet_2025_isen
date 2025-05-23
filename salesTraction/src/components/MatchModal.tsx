@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Offer, Student, UserType } from '../types/types_marketplace';
+import { useTranslation } from 'react-i18next';
 
 interface MatchModalProps {
   matchedItem: Offer | Student | null;
@@ -13,6 +14,7 @@ const MatchModal: React.FC<MatchModalProps> = ({
   userType,
   onClose
 }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   
   if (!matchedItem) return null;
@@ -32,10 +34,10 @@ const MatchModal: React.FC<MatchModalProps> = ({
         // Navigate to the message page
         navigate(`/messages/${matchId}`);
       } else {
-        console.error('Match ID not found');
+        console.error(t('errors.ERRORMatchIdNotFound'));
       }
     } catch (error) {
-      console.error('Error starting conversation:', error);
+      console.error(t('errors.ERRORStartConv'), error);
     }
   };
   
@@ -43,7 +45,7 @@ const MatchModal: React.FC<MatchModalProps> = ({
     <div className="match-modal-overlay">
       <div className="match-modal">
         <div className="match-celebration">
-          <h2>🎉 It's a Match! 🎉</h2>
+          <h2>🎉 {t('matches.ItMatch')} 🎉</h2>
           <div className="match-content">
             {userType === 'student' ? (
               <>
@@ -56,7 +58,7 @@ const MatchModal: React.FC<MatchModalProps> = ({
                   }}
                 />
                 <h3>{(matchedItem as Offer).title}</h3>
-                <p>You and this offer liked each other!</p>
+                <p>{t('matches.studentMatchOffer')}</p>
               </>
             ) : (
               <>
@@ -69,19 +71,19 @@ const MatchModal: React.FC<MatchModalProps> = ({
                   }}
                 />
                 <h3>{(matchedItem as Student).first_name} {(matchedItem as Student).last_name}</h3>
-                <p>You and this student liked each other!</p>
+                <p>{t('matches.startupMatchStudent')}</p>
               </>
             )}
           </div>
           <div className="match-actions">
             <button onClick={onClose} className="continue-button">
-              Continue Swiping
+              {t('matches.continueSwipping')}
             </button>
             <button 
               onClick={handleSendMessage}
               className="message-button"
             >
-              Send Message
+              {t('matches.sendMessage')}
             </button>
           </div>
         </div>

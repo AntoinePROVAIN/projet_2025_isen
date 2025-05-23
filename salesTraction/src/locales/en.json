@@ -1,16 +1,275 @@
 {
-    "SalesTraction": "SalesTraction",
-    "whoami": "Who are we ?",
-    "opinion": "Reviews",
-    "faq": "FAQ",
-    "student": "I'm a student",
-    "startup": "I'm a startup",
-    "meetCommercial": "SWIPE. MATCH. SELL.",
-    "slogan": "The platform connecting students with startups looking for traction.",
-    "presentationSpeech": "SalesTraction is reinventing how early-stage startups find their first customers — by connecting them with ambitious student sales talents on a commission-only basis.\nWith a user experience inspired by dating apps, you can swipe through offers or profiles, match, and start selling in just a few clicks.\n🚀 For startups: a flexible, risk-free sales force.\n🎓 For students: real-world experience that pays off — in skills and commissions.",
-    "myOffer": "My offers",
-    "profil": "My profil",
-    "logout":"Logout",
-    "exploreOffer":"Explore new offers",
-    "messages": "Messages"
+    "navigation": {
+        "SalesTraction": "SalesTraction",
+        "whoami": "Who are we?",
+        "opinion": "Reviews",
+        "faq": "FAQ",
+        "exploreOffer": "Explore new offers",
+        "myOffer": "My offers",
+        "profil": "My profile",
+        "logout": "Log out",
+        "messages": "Messages"
+    },
+    "landingpage": {
+        "student": "I am a student",
+        "startup": "I am a startup",
+        "meetCommercial": "SWIPE. MATCH. SELL.",
+        "altImagePres": "presentation image",
+        "slogan": "The platform that connects students and startups looking for sales traction.",
+        "presentationSpeech": "SalesTraction revolutionizes how early-stage startups find their first customers by connecting ambitious students to commission-based sales missions.\nWith an interface inspired by dating apps, swipe through offers or profiles, match, chat, and start selling in just a few clicks.\n🎯 For startups: an agile sales force with no fixed risk.\n🎓 For students: a valuable field experience... and profitable too."
+    },
+    "authentication": {
+        "Email": "Email",
+        "EmailPlaceholder": "Enter Email",
+        "password": "Password",
+        "passwordPlaceholder": "Enter Password",
+        "login": "Login",
+        "loginFail": "Login failed",
+        "loginSuccess": "Login success",
+        "loggedInSuccessfully": "Logged in successfully!",
+        "loginError": "Login error:",
+        "noAccount": "No account yet?"
+    },
+    "registration": {
+        "startup": {
+            "title": "Company Registration",
+            "email": "Email",
+            "siretNumber": "SIRET's number",
+            "companyName": "Company's name",
+            "sectors": "Sectors", 
+            "description": "Description",
+            "password": "Password",
+            "register": "Register",
+            "cancel": "Cancel",
+            "siretError": "The number must contain exactly 14 digits.",
+            "registrationSuccess": "Registration successful:",
+            "registrationFailed": "Registration failed"
+        },
+        "student": {
+            "title": "Student Registration",
+            "email": "Email",
+            "birthDate": "Birth Date",
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "linkedinUrl": "LinkedIn URL",
+            "university": "University",
+            "sectorPreferences": "Sector preferences",
+            "speakingLanguages": "Speaking languages",
+            "availability": "Availability",
+            "profilePicture": "Profile Picture",
+            "password": "Password",
+            "register": "Register",
+            "cancel": "Back",
+            "addButton": "+",
+            "removeButton": "✕",
+            "languageEmptyError": "The language field is empty",
+            "dateRangeError": "The starting date must be before the ending date",
+            "registrationSuccess": "Registration successful:",
+            "registrationFailed": "Registration failed"
+        }
+    },
+    "offers": {
+        "offer": "Offers",
+        "showFilters": "Show filters",
+        "filterOffers": "Filter offers",
+        "resetFilters": "Reset filters",
+        "interestedInOffer": "Why are you interested in this offer?",
+        "showInterest": "Write a motivation speech to show your interest!",
+        "showInterestPlaceholder": "Explain why you're interested in this opportunity, what skills you bring, and how you can contribute...",
+        "loading": "Loading offers...",
+        "loadingError": "Error loading offers. Please try again later.",
+        "accountTypeError": "Account type not recognized: ",
+        "noOffersAvailable": "No offers available at the moment.",
+        "noOffersFound": "No offers found at the moment.",
+        "offerDetails": "Offer details",
+        "noImage": "No image found",
+        "listTitle": "Offers list",
+        "created": "created",
+        "liked": "liked",
+        "createNewOffers": "Create new offers",
+        "generalInformation": "General information",
+        "commission": "Commission",
+        "distance": "Remote",
+        "physical": "Physical",
+        "region":"Region",
+        "target":"target",
+        "mode": "Mode",
+        "price": "Price",
+        "active": "Active",
+        "inactive": "Inactive",
+        "company": "Company",
+        "name": "Name",
+        "unspecified": "Unspecified",
+        "description": "Description",
+        "studentMatch": "List of students who matched this offer",
+        "noStudentFound": "No student found",
+        "seeDetails": "See details"
+    },
+    "offerCreation": {
+        "pageTitle": "Create New Offer",
+        "title": "Title",
+        "titlePlaceholder": "Enter a clear and short title",
+        "description": "Description",
+        "descriptionPlaceholder": "Describe your offer in detail",
+        "price": "Price",
+        "commission": "Commission",
+        "targetCustomer": "Target Customer",
+        "region": "Region",
+        "image": "Product Image URL",
+        "remote": "Remote Service (unchecked = Physical)",
+        "submit": "Create Offer",
+        "creating": "Creating...",
+        "success": "Offer created successfully!",
+        "error": "Failed to create offer. Please try again."
+    },
+    "students": {
+        "loadingError": "Error loading students with match. Please try again later."
+    },
+    "matches": {
+        "title": "Your Matches",
+        "loading": "Loading your matches...",
+        "noMatchesTitle": "No Matches Yet",
+        "noMatchesDescription": "Start swiping to find some matches!",
+        "goToMarketplace": "Go to Marketplace",
+        "backToMarketplace": "Back to Marketplace",
+        "noMessagesYet": "No messages yet",
+        "tryAgain": "Try Again",
+        "errorMessage": "Could not load your matches. Please try again later.",
+        "failedToFetch": "Failed to fetch matches",
+        "allDone": "All done!",
+        "checkLater": "Check back later for new opportunities!",
+        "ItMatch":"It's a Match!",
+        "studentMatchOffer": "You and this offer liked each other!",
+        "startupMatchStudent": "You and this student liked each other!",
+        "continueSwipping":"Continue Swiping",
+        "sendMessage": "Send Message"
+    },
+    "like":{
+
+    },
+
+    "filters": {
+        "region": "Region",
+        "allRegions": "All regions",
+        "sector": "Sector",
+        "allSectors": "All sectors",
+        "commissionRange": "Commission Range (%)",
+        "workType": "Work type",
+        "all": "All",
+        "remote": "Remote",
+        "onSite": "On-site",
+        "to": "to"
+    },
+    "admin": {
+        "companiesList": "Companies List",
+        "companyName": "Name",
+        "siret": "Siret",
+        "validated": "Validated",
+        "notDefined": "Not defined",
+        "revoke": "Revoke",
+        "validate": "Validate"
+    },
+    "actions": {
+        "skip": "Skip",
+        "like": "Like",
+        "submitedLike": "Submit Like",
+        "submitLike": "Submitting like...",
+        "cancel": "Cancel",
+        "submitting": "Submitting..."
+    },
+    "profile": {
+        "students": "Students",
+        "languages": "Languages",
+        "interestedIn": "Interested in",
+        "linkedInProfile": "LinkedIn Profile",
+        "student": {
+            "title": "Student Profile",
+            "sections": {
+                "contactInfo": {
+                    "title": "Contact Information",
+                    "email": "Email",
+                    "linkedin": "LinkedIn",
+                    "noEmail": "No email provided"
+                },
+                "availabilityPeriod": {
+                    "title": "Availability Period", 
+                    "from": "From",
+                    "to": "To"
+                },
+                "personalInfo": {
+                    "title": "Personal Information",
+                    "birthDate": "Birth Date"
+                },
+                "languages": {
+                    "title": "Languages",
+                    "noLanguages": "No languages specified",
+                    "unknownLanguage": "Unknown language"
+                },
+                "sectorPreferences": {
+                    "title": "Sector Preferences",
+                    "noSectorPreferences": "No sector preferences specified",
+                    "unknownSector": "Unknown sector"
+                }
+            }
+        },
+        "enterprise": {
+            "title": "Startup Profile",
+            "sections": {
+                "businessInfo": {
+                "title": "Business Information",
+                "siret": "SIRET",
+                "email": "Email",
+                "noEmail": "No email provided"
+                },
+                "description": {
+                "title": "Description",
+                "noDescription": "No description provided"
+                },
+                "status": {
+                "title": "Status",
+                "validated": "✅ Account Validated",
+                "pendingValidation": "⚠️ Account Pending Validation"
+                },
+                "sector": "Sector"
+            }
+        }
+    },
+    "messages": {
+        "loading": "Loading",
+        "detectingUser": "Detecting user information...",
+        "writeMotivation": "Please write a motivation message before you can submit your like!",
+        "characters": "characters"
+    },
+    "common": {
+        "offer":"offers",
+        "students":"students",
+        "noMore": "No more {{item}} available at the moment.",
+        "loading": "Loading profile data...",
+        "notSpecified": "Not specified"
+    },
+    "errors": {
+        "ERRORSubmitLike": "Error submitting like:",
+        "ERRORSubmitLikeAlert": "Your like submission failed. Please try again",
+        "fetchStartupsFailed": "Failed to fetch startups",
+        "updateStatusFailed": "Failed to update status",
+        "ERRORPage": "Error page",
+        "ERRORPageNotExist": "The page you are looking for does not exist",
+        "ERRORCheckMatch": "Error checking match:",
+        "ERRORMatchIdNotFound":"Match ID not found",
+        "ERRORStartConv": "Error starting conversation:",
+        "ERRORFetchUnread": "Error fetching unread count:",
+        "ERRORParsingToken": "Error parsing token",
+        "title": "Error",
+        "userIdNotFound": "User ID not found. Please log in again.",
+        "fetchProfile": "Error fetching profile",
+        "failedToFetch": "Failed to fetch profile data",
+        "unknownError": "Unknown error"
+    
+    },
+    "states": {
+        "profileNotFound": {
+            "title": "Profile Not Found",
+            "message": "We couldn't find your profile information. Please try logging in again."
+        }
+    }
 }
