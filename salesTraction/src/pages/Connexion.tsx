@@ -66,9 +66,9 @@ function Connexion() {
             <div className='authComponent_content'>
               <form onSubmit={handleSubmit}>
                 <label className="labels">Email</label>
-                <input type='email' id="email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
+                <input type='email' id="email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} className='placeholder-gray-400 auth_input w-full mb-3 p-1 h-10 border rounded' placeholder="connexion@example.com" required/>
                 <label className="labels">Password</label>
-                <input type='password' id='password' name='password' value={password} onChange={(e) => setPassword(e.target.value)} className='auth_input w-full mb-3 p-1 h-10 border rounded' required/>
+                <input type='password' id='password' name='password' value={password} onChange={(e) => setPassword(e.target.value)} className='placeholder-gray-400 auth_input w-full mb-3 p-1 h-10 border rounded' placeholder="password123" required/>
                 <div className="texte_lien">
                   {/* <p className="leftLink" onClick={compteExist}></p> */}
                   <p className="rightLink" onClick={compteExist}>No account yet ?</p>

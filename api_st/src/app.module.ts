@@ -33,7 +33,7 @@ import { MessageModule } from './features/message/message.module';
     type: 'postgres',
     host: '127.0.0.1',           // ou l'IP de ton serveur
     port: 5432,
-    username: 'postgres',        // ton nom d'utilisateur
+    username: 'user1',        // ton nom d'utilisateur
     password: 'isen35',      // ton mot de passe
     database: 'sales_traction', 
     entities: [

@@ -23,6 +23,7 @@
  * @returns {JSX.Element} Un bouton stylisé avec les propriétés spécifiées
  */
 import React from 'react';
+import "../assets/css/LandingPage.css"
 
 interface ButtonProps {
     onClick?: () => void;
@@ -42,9 +43,9 @@ const Button: React.FC<ButtonProps> = ({
     const baseStyles = 'px-4 py-2 rounded-full font-medium transition-colors';
     
     const variantStyles = {
-        primary: 'bg-blue-600 text-white hover:bg-blue-700',
+        primary: 'text-white hover:bg-blue-700',
         secondary: 'bg-gray-600 text-white hover:bg-gray-700',
-        outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50'
+        outline: 'border-2 hover:bg-blue-50'
     };
 
     const buttonClasses = `${baseStyles} ${variantStyles[variant]} ${className} ${
@@ -55,7 +56,7 @@ const Button: React.FC<ButtonProps> = ({
         <button
             onClick={onClick}
             disabled={disabled}
-            className={buttonClasses}
+            className={"color_contour "+buttonClasses}
         >
             {children}
         </button>

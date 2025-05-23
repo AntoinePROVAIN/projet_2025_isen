@@ -135,7 +135,7 @@ const OffersList = () => {
   }
 
   if (offers.length === 0 && likes.length === 0) {
-    return <><Header/><div className="text-center py-8">Aucune offre disponible pour le moment.</div></>;
+    return <><Header/><div className="text-center py-8">Aucune offre disponible pour le moment.</div>{userType == "startup" ? <Button onClick={()=>nav('/create_offer')} children={"Créer de nouvelles offres"}/>: ""}</>;
   }
 
   

@@ -54,12 +54,12 @@ const Header: React.FC = () => {
             <div className="mx-auto px-4 py-3 flex flex-row ">
                 <button
                     onClick={toggleMenu}
-                    className="mr-4 z-50 relative" 
+                    className="text-white mr-4 z-50 relative" 
                     aria-label="Menu">
                     {!isMenuOpen ? <Menu size={24} /> : <X size={24}/>}
                     
                 </button>
-                <h1 className="text-4xl">{t('SalesTraction')}</h1>
+                <h1 className="text-white text-4xl">{t('SalesTraction')}</h1>
                 <div className="w-8"></div>
             </div>
             {/* {isMenuOpen && ( */}

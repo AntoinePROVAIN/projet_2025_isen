@@ -4,3 +4,41 @@ html {
 .li-hidden{
     visibility: hidden; 
 }
+
+.slogan {
+  text-align: justify;
+}
+
+.police {
+  font-family: "Londrina Solid", sans-serif;
+  letter-spacing: 5px;
+  color: #1983cd;
+}
+
+.color_contour {
+  border-color: #1983cd;
+  color: #1983cd;
+}
+
+.presentation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  max-width: 100vw;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.presentation img {
+  height: auto;
+  max-height: 300px; /* ajuste selon ton besoin */
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  flex-shrink: 0; /* empêche l'image de se réduire à zéro */
+}
+
+
+
+

@@ -16,6 +16,7 @@ const StudentCard: React.FC<StudentCardProps> = ({ student }) => {
 
   return (
     <>
+    
       <img 
         src={student.profil_picture} 
         alt={`${student.first_name} ${student.last_name}`}
@@ -27,16 +28,16 @@ const StudentCard: React.FC<StudentCardProps> = ({ student }) => {
       />
       
       <div className="card-content">
-        <h2>{student.first_name} {student.last_name}</h2>
+        <h2 className='name_student'>{student.first_name} {student.last_name}</h2>
         <div className="student-info">
-          <p className="university">🎓 {student.university}</p>
+          <p className="university"><span className='logo'>🎓</span> {student.university}</p>
           <p className="duration">
-            📅 {formatDate(student.starting_date)} - {formatDate(student.ending_date)}
+            <span className='logo'>📅</span> {formatDate(student.starting_date)} - {formatDate(student.ending_date)}
           </p>
           
           {student.languages.length > 0 && (
             <div className="languages">
-              <strong>🗣️ Languages:</strong>
+              <strong><span className='logo'>🗣️</span> Languages:</strong>
               <span className="language-list">
                 {student.languages.map((lang, index) => (
                   <span key={index} className="language-tag">
@@ -49,7 +50,7 @@ const StudentCard: React.FC<StudentCardProps> = ({ student }) => {
           
           {student.sectorPreferences.length > 0 && (
             <div className="sectors">
-              <strong>💼 Interested in:</strong>
+              <strong><span className='logo'>💼</span> Interested in:</strong>
               <span className="sector-list">
                 {student.sectorPreferences.map((sector, index) => (
                   <span key={index} className="sector-tag">
@@ -68,7 +69,7 @@ const StudentCard: React.FC<StudentCardProps> = ({ student }) => {
               className="linkedin-link"
               onClick={(e) => e.stopPropagation()}
             >
-              🔗 LinkedIn Profile
+              <span className='logo'>🔗</span> LinkedIn Profile
             </a>
           )}
         </div>

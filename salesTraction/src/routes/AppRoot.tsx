@@ -23,7 +23,7 @@ function AppRoot() {
     <>
       <Router>
         <Routes>
-            <Route path="/" element={<> < LandingPage/> </>} />
+            <Route path="/" element={<> <LandingPage/> </>} />
             <Route path="/inscript/student" element={<> <InscriptionEtudiant /> </>} />
             <Route path="/inscript/startup" element={<> <InscriptionEntreprise /> </>} />
             <Route path="/connection/:personne" element={<> <Connexion /> </>} />
