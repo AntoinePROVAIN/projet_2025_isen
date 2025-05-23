@@ -43,7 +43,7 @@ function LandingPage() {
               <img src="/etudiant.png" alt="marketplace_etudiant" />
               <img src="startup.png" alt="marketplace_startup" />
             </div>
-              <img className="rounded" src="/match.png" alt="match" />
+            <img className="mx-auto rounded" src="/match.png" alt="match" />
             <p className="slogan text-gray-600 text-lg mt-4 leading-relaxed text-center">
                {t('landingpage.presentationSpeech')}</p>
         </div>
