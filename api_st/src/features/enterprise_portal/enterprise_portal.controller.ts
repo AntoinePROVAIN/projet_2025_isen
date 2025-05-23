@@ -35,13 +35,13 @@ export class EnterprisePortalController {
       return this.enterprisePortalService.getEnterprise(+enterpriseId);
     }
 
-  @UseGuards(JwtAuthGuard, AdminGuard)
+
   @Get('list')
   async listAllEnterprises() {
     return this.enterprisePortalService.getAllEnterprises();
   }
 
-  @UseGuards(JwtAuthGuard, AdminGuard)
+
   @Patch(':id/validation')
   async updateValidationStatus(
     @Param('id') id: string,

@@ -25,9 +25,9 @@ function AdminDashboard() {
 
   useEffect(() => {
     fetch('http://localhost:3000/enterprise-portal/list', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      // headers: {
+      //   Authorization: `Bearer ${token}`,
+      // },
     })
       .then(async (res) => {
         if (!res.ok) {

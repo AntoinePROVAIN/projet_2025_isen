@@ -30,12 +30,12 @@ import { MessageModule } from './features/message/message.module';
 
 @Module({
   imports: [StudentPortalModule, EnterprisePortalModule,TypeOrmModule.forRoot({
-    type: 'postgres',
-    host: '127.0.0.1',           // ou l'IP de ton serveur
+    type: 'postgres',            // type de bdd utilisé ( postgres / mysql)
+    host: 'ip_serveur',           // ou l'IP de ton serveur
     port: 5432,
-    username: 'sales_traction',        // ton nom d'utilisateur
-    password: 'sales_traction',      // ton mot de passe
-    database: 'sales_traction', 
+    username: 'nom_utilisateur',        // ton nom d'utilisateur
+    password: 'mot_de_passe',      // ton mot de passe
+    database: 'database', 
     entities: [
       Student,
       User,

@@ -3,7 +3,7 @@
   import { useTranslation } from 'react-i18next';
 
   function ConnexionAdmin() {
-    const {t, i18n} = useTranslation
+    const {t, i18n} = useTranslation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');

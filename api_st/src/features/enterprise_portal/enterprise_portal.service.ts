@@ -183,14 +183,33 @@ export class EnterprisePortalService {
     }
   }
 
-  async getEnterprise(enterpriseId: number): Promise<Startup> {
-      const enterprise = await this.startupRepository.findOne({
-        where: { id: enterpriseId },
-        relations: ['user']
-      });
-      if (!enterprise) {
-        throw new BadRequestException('Startup not found');
-      }
-      return enterprise;
-    }
+  // async getEnterprise(enterpriseId: number): Promise<Startup> {
+  //     const enterprise = await this.startupRepository.findOne({
+  //       where: { id: enterpriseId },
+  //       relations: ['user']
+  //     });
+  //     if (!enterprise) {
+  //       throw new BadRequestException('Startup not found');
+  //     }
+  //     return enterprise;
+  //   }
+
+  async getEnterprise(enterpriseId: any): Promise<Startup> {
+  const parsedId = Number(enterpriseId);
+
+  if (isNaN(parsedId)) {
+    throw new BadRequestException('Invalid enterprise ID: must be a number');
+  }
+
+  const enterprise = await this.startupRepository.findOne({
+    where: { id: parsedId },
+    relations: ['user']
+  });
+
+  if (!enterprise) {
+    throw new BadRequestException('Startup not found');
+  }
+
+  return enterprise;
+}
 }
