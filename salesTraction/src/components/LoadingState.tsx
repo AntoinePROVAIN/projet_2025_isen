@@ -10,7 +10,7 @@ const LoadingState: React.FC<LoadingStateProps> = ({ message = 'Loading...' }) =
   return (
     <div className="swipe-container">
       <div className="loading">
-        <h2>{t('loading')}</h2>
+        <h2>{t('messages.loading')}</h2>
         <p>{message}</p>
       </div>
     </div>

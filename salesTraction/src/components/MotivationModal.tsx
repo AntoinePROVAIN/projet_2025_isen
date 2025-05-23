@@ -25,8 +25,8 @@ const MotivationModal: React.FC<MotivationModalProps> = ({
     <div className="motivation-modal-overlay">
       <div className="motivation-modal">
         <div className="modal-header">
-          <h3>{t('interestedInOffer')}</h3>
-          <p>{t('showInterest')}</p>
+          <h3>{t('offers.interestedInOffer')}</h3>
+          <p>{t('offers.showInterest')}</p>
         </div>
         
         <div className="modal-body">
@@ -48,7 +48,7 @@ const MotivationModal: React.FC<MotivationModalProps> = ({
           <textarea
             value={motivation}
             onChange={(e) => setMotivation(e.target.value)}
-            placeholder={t('showInterestPlaceholder')}
+            placeholder={t('offers.showInterestPlaceholder')}
             className="motivation-textarea"
             rows={6}
             maxLength={500}
@@ -57,7 +57,7 @@ const MotivationModal: React.FC<MotivationModalProps> = ({
           
           <div className="character-count">
             <span className={motivation.length > 450 ? 'near-limit' : ''}>
-              {motivation.length}/500 {t('characters')}
+              {motivation.length}/500 {t('messages.characters')}
             </span>
           </div>
         </div>
@@ -68,14 +68,14 @@ const MotivationModal: React.FC<MotivationModalProps> = ({
             className="cancel-button"
             disabled={isSubmitting}
           >
-            {t('Cancel')}
+            {t('actions.cancel')}
           </button>
           <button 
             onClick={onSubmit}
             className="submit-button"
             disabled={!motivation.trim() || isSubmitting}
           >
-            {isSubmitting ? t('submitting') : t('submitedLike')}
+            {isSubmitting ? t('actions.submitting') : t('actions.submitedLike')}
           </button>
         </div>
       </div>

@@ -48,7 +48,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
         onClick={onToggleFilters}
         id='show-filters'
       >
-        {t('showFilters')}
+        {t('offers.showFilters')}
       </button>
     );
   }
@@ -56,7 +56,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
   return (
     <div className="offer-filters">
       <div className="filter-header">
-        <h3>{t('filterOffers')}</h3>
+        <h3>{t('offers.filterOffers')}</h3>
         <button 
           className="filter-close-button"
           onClick={onToggleFilters}
@@ -66,12 +66,12 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
       </div>
 
       <div className="filter-section">
-        <label>{t('region')}</label>
+        <label>{t('offers.region')}</label>
         <select
           value={localFilters.region || ''}
           onChange={(e) => handleFilterChange('region', e.target.value || undefined)}
         >
-          <option value="">{t('allRegions')}</option>
+          <option value="">{t('filters.allRegions')}</option>
           {availableRegions.map((region) => (
             <option key={region} value={region}>{region}</option>
           ))}
@@ -79,12 +79,12 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
       </div>
 
       <div className="filter-section">
-        <label>{t('sector')}</label>
+        <label>{t('filters.sector')}</label>
         <select
           value={localFilters.secteur || ''}
           onChange={(e) => handleFilterChange('secteur', e.target.value || undefined)}
         >
-          <option value="">{t('allSectors')}</option>
+          <option value="">{t('filters.allSectors')}</option>
           {availableSectors.map((sector) => (
             <option key={sector} value={sector}>{sector}</option>
           ))}
@@ -92,7 +92,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
       </div>
 
       <div className="filter-section">
-        <label>{t('commissionRange')}</label>
+        <label>{t('filters.commissionRange')}</label>
         <div className="range-inputs">
           <input
             type="number"
@@ -102,7 +102,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
             value={localFilters.minCommission || ''}
             onChange={(e) => handleFilterChange('minCommission', e.target.value ? Number(e.target.value) : undefined)}
           />
-          <span>{t('to')}</span>
+          <span>{t('filters.to')}</span>
           <input
             type="number"
             min="0"
@@ -115,7 +115,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
       </div>
 
       <div className="filter-section">
-        <label>{t('workType')}</label>
+        <label>{t('filters.workType')}</label>
         <div className="radio-group">
           <label>
             <input
@@ -124,7 +124,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
               checked={localFilters.remote_or_physical === null || localFilters.remote_or_physical === undefined}
               onChange={() => handleFilterChange('remote_or_physical', null)}
             />
-            {t('all')}
+            {t('filters.all')}
           </label>
           <label>
             <input
@@ -133,7 +133,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
               checked={localFilters.remote_or_physical === true}
               onChange={() => handleFilterChange('remote_or_physical', true)}
             />
-            {t('remote')}
+            {t('filters.remote')}
           </label>
           <label>
             <input
@@ -142,7 +142,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
               checked={localFilters.remote_or_physical === false}
               onChange={() => handleFilterChange('remote_or_physical', false)}
             />
-            {t('onSite')}
+            {t('filters.onSite')}
           </label>
         </div>
       </div>
@@ -152,7 +152,7 @@ const OfferFiltersComponent: React.FC<OfferFiltersProps> = ({
           className="reset-filters-button"
           onClick={handleResetFilters}
         >
-          {t('resetFilters')}
+          {t('offers.resetFilters')}
         </button>
       </div>
     </div>

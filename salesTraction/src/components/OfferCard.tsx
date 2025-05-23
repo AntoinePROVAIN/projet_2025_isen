@@ -51,7 +51,7 @@ const OfferCard: React.FC<OfferCardProps> = ({ offer }) => {
         </div>
         <div className="text-sm text-white-500 mb-2">
           <span className="mr-2">{offer.region}</span>
-          <span>{offer.remote_or_physical ? 'Distanciel' : 'Présentiel'}</span>
+          <span>{offer.remote_or_physical ? t('offers.distance') : t('offers.physical')}</span>
         </div>
         {/* {offer.startup && (
           <div className="mt-3 pt-3 border-white-200">
@@ -59,8 +59,8 @@ const OfferCard: React.FC<OfferCardProps> = ({ offer }) => {
           </div>
         )} */}
         <div className="swipe-hint">
-          <span className="hint-left">👈 {t('skip')}</span>
-          <span className="hint-right">{t('like')} 👉</span>
+          <span className="hint-left">👈 {t('actions.skip')}</span>
+          <span className="hint-right">{t('actions.like')} 👉</span>
         </div>
       </div>
     </>
